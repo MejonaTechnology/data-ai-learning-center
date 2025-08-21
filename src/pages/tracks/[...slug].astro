@@ -1,0 +1,481 @@
+---
+import PageLayout from '../../components/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tracks = await getCollection('tracks');
+  return tracks.map((track) => ({
+    params: { slug: track.slug },
+    props: track,
+  }));
+}
+
+const track = Astro.props;
+const { Content } = await track.render();
+
+// Get the level-based color scheme with modern gradients
+const levelStyle = track.data.level === 'foundation' ? 'from-emerald-500 via-blue-600 to-indigo-700' :
+                  track.data.level === 'specialization' ? 'from-orange-500 via-red-600 to-pink-700' : 
+                  'from-purple-500 via-indigo-600 to-blue-700';
+
+const levelBadgeStyle = track.data.level === 'foundation' ? 'from-emerald-400 to-blue-500' :
+                       track.data.level === 'specialization' ? 'from-orange-400 to-red-500' : 
+                       'from-purple-400 to-indigo-500';
+
+const levelAccentStyle = track.data.level === 'foundation' ? 'emerald' :
+                        track.data.level === 'specialization' ? 'orange' : 
+                        'purple';
+---
+
+<PageLayout 
+  title={track.data.title}
+  description={track.data.description}
+  headerStyle="minimal"
+>
+  <!-- Modern Track Header -->
+  <section class={`py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-br ${levelStyle} text-white relative overflow-hidden`}>
+    <!-- Enhanced Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-10 left-1/4 w-96 h-96 bg-white/8 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-float animation-delay-400"></div>
+      <div class="absolute top-1/2 left-10 w-64 h-64 bg-white/10 rounded-full blur-2xl animate-float animation-delay-800"></div>
+      <div class="absolute bottom-1/3 right-10 w-48 h-48 bg-white/6 rounded-full blur-2xl animate-float animation-delay-600"></div>
+    </div>
+    
+    <!-- Glassmorphism Pattern Overlay -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDYwIDAgTCAwIDAgMCA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMDUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+    
+    <div class="section-container relative z-10">
+      <div class="max-w-5xl mx-auto text-center">
+        <!-- Modern Badge System -->
+        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fade-in px-4 sm:px-6 lg:px-0">
+          <div class={`bg-gradient-to-r ${levelBadgeStyle} text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-bold shadow-xl backdrop-blur-xl border border-white/20`}>
+            <span class="flex items-center gap-2">
+              <svg class="w-3 sm:w-4 h-3 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              {track.data.level.charAt(0).toUpperCase() + track.data.level.slice(1)} Level
+            </span>
+          </div>
+          <div class="bg-white/25 backdrop-blur-xl text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold border border-white/30 shadow-lg">
+            <span class="flex items-center gap-2">
+              <svg class="w-3 sm:w-4 h-3 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+              </svg>
+              {track.data.duration}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Modern Title with Enhanced Typography -->
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold mb-4 sm:mb-6 animate-slide-up animation-delay-200 px-4 sm:px-6 lg:px-0">
+          <span class="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent leading-tight">
+            {track.data.title}
+          </span>
+        </h1>
+        
+        <!-- Enhanced Description -->
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mb-8 sm:mb-10 lg:mb-12 leading-relaxed max-w-4xl mx-auto font-medium animate-slide-up animation-delay-400 px-4 sm:px-6 lg:px-0">
+          {track.data.description}
+        </p>
+        
+        <!-- Glassmorphism Capstone Badge -->
+        {track.data.capstone && (
+          <div class="inline-flex items-center gap-2 sm:gap-3 bg-white/15 backdrop-blur-xl px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-base lg:text-lg font-bold border border-white/30 shadow-xl animate-slide-up animation-delay-600 mx-4 sm:mx-6 lg:mx-0">
+            <div class="w-6 sm:w-7 lg:w-8 h-6 sm:h-7 lg:h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+              <span class="text-xs sm:text-sm">🎯</span>
+            </div>
+            <span>Capstone Project: {track.data.capstone}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+    <!-- Modern Track Content -->
+    <section class="py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+      <!-- Subtle Background Elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 right-1/4 w-72 h-72 bg-blue-200/10 rounded-full blur-3xl animate-float animation-delay-200"></div>
+        <div class="absolute bottom-20 left-1/3 w-56 h-56 bg-indigo-200/8 rounded-full blur-2xl animate-float animation-delay-600"></div>
+      </div>
+      
+      <div class="section-container relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <!-- Content Card with Glassmorphism -->
+          <div class="bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 xl:p-12 shadow-xl border border-white/50 mx-4 sm:mx-6 lg:mx-0">
+            <div class="prose prose-lg max-w-none">
+              <Content />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Curriculum Section -->
+    <section class="py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-br from-indigo-50/30 via-white to-purple-50/30 relative overflow-hidden">
+      <!-- Enhanced Background Decorations -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-10 left-1/4 w-80 h-80 bg-gradient-to-r from-indigo-200/15 to-purple-200/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-10 right-1/4 w-64 h-64 bg-gradient-to-r from-blue-200/10 to-indigo-200/15 rounded-full blur-2xl animate-float animation-delay-400"></div>
+      </div>
+      
+      <div class="section-container relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <!-- Modern Section Header -->
+          <div class="text-center mb-12 sm:mb-16 px-4 sm:px-6 lg:px-0">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-800 mb-4 sm:mb-6 animate-fade-in">
+              Detailed <span class={`bg-gradient-to-r ${levelBadgeStyle} bg-clip-text text-transparent`}>Curriculum</span>
+            </h2>
+            <p class="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto animate-slide-up animation-delay-200">
+              A comprehensive month-by-month breakdown of skills, technologies, and real-world applications you'll master.
+            </p>
+            <div class="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r ${levelBadgeStyle} mx-auto rounded-full mt-6 sm:mt-8 shadow-lg"></div>
+          </div>
+          
+          <!-- Enhanced Curriculum Cards -->
+          <div class="space-y-6 sm:space-y-8 px-4 sm:px-6 lg:px-0">
+            {track.data.months.map((month, index) => (
+              <div class="group bg-white/70 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 xl:p-10 shadow-xl border border-white/50 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 animate-scale-in" style={`animation-delay: ${index * 200}ms`}>
+                <!-- Modern Month Header -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
+                  <div class={`w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-r ${levelBadgeStyle} text-white rounded-xl sm:rounded-2xl flex items-center justify-center font-bold text-lg sm:text-xl shadow-xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+                    {index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-heading font-bold text-slate-800 group-hover:text-${levelAccentStyle}-600 transition-colors">
+                      {month.title}
+                    </h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mt-1 sm:mt-2">
+                      <span class="text-xs sm:text-sm text-slate-500 font-medium">4 weeks intensive</span>
+                      <span class="hidden sm:block w-1 h-1 bg-slate-300 rounded-full"></span>
+                      <span class="text-xs sm:text-sm text-slate-500 font-medium">{month.skills.length} core skills</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Enhanced Content Grid -->
+                <div class="grid lg:grid-cols-3 gap-6 sm:gap-8">
+                  <!-- Skills Section -->
+                  <div class="lg:col-span-2">
+                    <h4 class="text-base sm:text-lg font-bold text-slate-800 mb-4 sm:mb-6 flex items-center gap-2">
+                      <svg class="w-4 sm:w-5 h-4 sm:h-5 text-${levelAccentStyle}-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                      </svg>
+                      Skills You'll Master
+                    </h4>
+                    <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                      {month.skills.map((skill, skillIndex) => (
+                        <div class="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-white/60 backdrop-blur-sm rounded-lg sm:rounded-xl border border-white/40 hover:bg-white/80 transition-all duration-300">
+                          <div class={`w-4 sm:w-5 h-4 sm:h-5 bg-gradient-to-r ${levelBadgeStyle} rounded-full flex items-center justify-center mt-0.5 flex-shrink-0`}>
+                            <svg class="w-2 sm:w-3 h-2 sm:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                          </div>
+                          <span class="text-slate-700 text-xs sm:text-sm font-medium leading-relaxed">{skill}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <!-- Focus Section -->
+                  <div class={`bg-gradient-to-br from-${levelAccentStyle}-50 via-white to-${levelAccentStyle}-100/50 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-${levelAccentStyle}-200/30 shadow-lg mt-6 lg:mt-0`}>
+                    <h4 class="text-base sm:text-lg font-bold text-slate-800 mb-3 sm:mb-4 flex items-center gap-2">
+                      <svg class="w-4 sm:w-5 h-4 sm:h-5 text-${levelAccentStyle}-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                      Month {index + 1} Focus
+                    </h4>
+                    <p class="text-slate-700 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                      This month focuses on building {month.skills.length > 2 ? 'comprehensive skills in' : 'foundational knowledge of'} 
+                      key technologies and methodologies essential for {track.data.level === 'foundation' ? 'entering the field' : 'advanced practice'}.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                      <span class="w-2 h-2 bg-${levelAccentStyle}-400 rounded-full"></span>
+                      <span>Hands-on projects included</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Learning Outcomes -->
+    <section class="py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 relative overflow-hidden">
+      <!-- Decorative Elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/4 left-1/5 w-64 h-64 bg-blue-200/10 rounded-full blur-3xl animate-float animation-delay-300"></div>
+        <div class="absolute bottom-1/4 right-1/5 w-48 h-48 bg-indigo-200/8 rounded-full blur-2xl animate-float animation-delay-700"></div>
+      </div>
+      
+      <div class="section-container relative z-10">
+        <div class="max-w-6xl mx-auto text-center">
+          <!-- Enhanced Section Header -->
+          <div class="mb-20">
+            <!-- Title with Icon -->
+            <div class="flex items-center justify-center gap-4 mb-6 animate-fade-in">
+              <div class={`w-12 h-12 bg-gradient-to-r ${levelBadgeStyle} rounded-2xl flex items-center justify-center shadow-xl`}>
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+              </div>
+              <h2 class="text-4xl lg:text-5xl font-heading font-bold text-slate-800">
+                What You'll <span class={`bg-gradient-to-r ${levelBadgeStyle} bg-clip-text text-transparent`}>Achieve</span>
+              </h2>
+            </div>
+            
+            <!-- Subtitle -->
+            <p class="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
+              Transform your career with these concrete outcomes and industry-recognized skills that employers value most.
+            </p>
+            
+            <!-- Visual Separator -->
+            <div class="flex items-center justify-center gap-4 mt-10 animate-fade-in animation-delay-400">
+              <div class="w-8 h-px bg-slate-300"></div>
+              <div class={`w-12 h-2 bg-gradient-to-r ${levelBadgeStyle} rounded-full shadow-lg`}></div>
+              <div class="w-8 h-px bg-slate-300"></div>
+            </div>
+          </div>
+          
+          <!-- Redesigned Outcomes Grid -->
+          <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+            {track.data.outcomes.map((outcome, index) => {
+              // Define meaningful icons for different types of outcomes
+              const icons = [
+                // Icon 1: Database/Analytics
+                `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                </svg>`,
+                // Icon 2: Code/Programming
+                `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>`,
+                // Icon 3: Chart/Pipeline
+                `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>`,
+                // Icon 4: Team/Collaboration
+                `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>`
+              ];
+              
+              return (
+                <div class="group relative">
+                  <!-- Background Card -->
+                  <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 animate-scale-in hover:scale-[1.02]" style={`animation-delay: ${index * 200}ms`}>
+                    <!-- Icon and Header -->
+                    <div class="flex items-start gap-6 mb-6">
+                      <!-- Modern Icon Container -->
+                      <div class={`relative flex-shrink-0 w-16 h-16 bg-gradient-to-br ${levelBadgeStyle} rounded-2xl flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                        <div set:html={icons[index % icons.length]} />
+                        <!-- Glow Effect -->
+                        <div class={`absolute -inset-1 bg-gradient-to-br ${levelBadgeStyle} rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300`}></div>
+                      </div>
+                      
+                      <!-- Achievement Number Badge -->
+                      <div class="flex-shrink-0">
+                        <div class={`w-8 h-8 bg-gradient-to-r ${levelBadgeStyle} text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg`}>
+                          {index + 1}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Achievement Content -->
+                    <div class="space-y-4">
+                      <!-- Outcome Text -->
+                      <p class="text-slate-700 text-lg leading-relaxed font-medium group-hover:text-slate-800 transition-colors">
+                        {outcome}
+                      </p>
+                      
+                      <!-- Achievement Indicator -->
+                      <div class="flex items-center gap-3 pt-4 border-t border-slate-200/50">
+                        <div class={`w-3 h-3 bg-gradient-to-r ${levelBadgeStyle} rounded-full shadow-sm`}></div>
+                        <span class="text-sm text-slate-500 font-medium">Career Milestone</span>
+                        <div class="flex-1 h-px bg-gradient-to-r ${levelBadgeStyle} opacity-30"></div>
+                        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Hover Shadow Effect -->
+                  <div class={`absolute inset-0 bg-gradient-to-br ${levelBadgeStyle} rounded-3xl blur-xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10`}></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Enrollment CTA -->
+    <section class={`py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-br ${levelStyle} text-white relative overflow-hidden`}>
+      <!-- Enhanced Background Elements -->
+      <div class="absolute inset-0">
+        <div class="absolute top-10 right-10 w-96 h-96 bg-white/8 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-float animation-delay-400"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/6 rounded-full blur-2xl animate-float animation-delay-800"></div>
+      </div>
+      
+      <!-- Glassmorphism Pattern -->
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZG90cyIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2RvdHMpIi8+PC9zdmc+')] opacity-40"></div>
+      
+      <div class="section-container text-center relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <!-- Enhanced CTA Header -->
+          <div class="mb-8 sm:mb-10 lg:mb-12 px-4 sm:px-6 lg:px-0">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold mb-4 sm:mb-6 animate-fade-in">
+              Ready to Master <br class="hidden sm:block"/>
+              <span class="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                {track.data.title}?
+              </span>
+            </h2>
+            <p class="text-base sm:text-lg lg:text-xl xl:text-2xl mb-6 sm:mb-8 text-white/95 max-w-3xl mx-auto leading-relaxed font-medium animate-slide-up animation-delay-200">
+              Join thousands of professionals who have transformed their careers with our industry-leading curriculum.
+            </p>
+          </div>
+          
+          <!-- Enhanced Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-10 lg:mb-12 animate-slide-up animation-delay-400 px-4 sm:px-6 lg:px-0">
+            <a href="/enroll" class="group btn-cta-solid">
+              <span>Enroll in This Track</span>
+              <svg class="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <a href="/tracks" class="btn-cta-outline font-semibold">
+              <svg class="w-4 sm:w-5 h-4 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
+              <span>View All Tracks</span>
+            </a>
+          </div>
+          
+          <!-- Trust Indicators -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-8 text-white/90 text-sm animate-fade-in animation-delay-600">
+            <div class="flex items-center gap-3 bg-white/15 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
+              <div class="w-5 h-5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="font-semibold">Industry Certification</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/15 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
+              <div class="w-5 h-5 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="font-semibold">Career Support</span>
+            </div>
+            <div class="flex items-center gap-3 bg-white/15 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
+              <div class="w-5 h-5 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="font-semibold">Lifetime Access</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</PageLayout>
+
+<style>
+  /* Modern enhanced prose styles */
+  .prose {
+    @apply text-slate-700;
+  }
+  
+  .prose h2 {
+    @apply text-slate-800 font-heading font-bold text-3xl mt-12 mb-8 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+  
+  .prose h3 {
+    @apply text-slate-700 font-heading font-semibold text-xl mt-8 mb-4 border-l-4 border-blue-400 pl-4;
+  }
+  
+  .prose p {
+    @apply leading-relaxed mb-6 text-slate-600;
+  }
+  
+  .prose ul {
+    @apply space-y-3;
+  }
+  
+  .prose li {
+    @apply text-slate-600 relative pl-6;
+  }
+  
+  .prose li::before {
+    content: '→';
+    @apply absolute left-0 text-blue-500 font-bold;
+  }
+  
+  .prose strong {
+    @apply text-slate-800 font-semibold;
+  }
+  
+  .prose code {
+    @apply bg-slate-100 px-2 py-1 rounded text-slate-800 text-sm font-mono;
+  }
+  
+  /* Interactive hover effects */
+  .group:hover .prose h2 {
+    @apply scale-105 transition-transform duration-300;
+  }
+  
+  /* Smooth animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  /* Dynamic color variables for level-based styling */
+  .track-foundation {
+    --level-primary: theme('colors.emerald.500');
+    --level-secondary: theme('colors.blue.600');
+  }
+  
+  .track-specialization {
+    --level-primary: theme('colors.orange.500');
+    --level-secondary: theme('colors.red.600');
+  }
+  
+  .track-advanced {
+    --level-primary: theme('colors.purple.500');
+    --level-secondary: theme('colors.indigo.600');
+  }
+  
+  /* Enhanced glassmorphism effects */
+  .glass-enhanced {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+  
+  .glass-enhanced:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.4);
+  }
+</style>

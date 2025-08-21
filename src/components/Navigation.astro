@@ -1,0 +1,260 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="nav-glass">
+  <div class="section-container">
+    <div class="flex items-center justify-between h-16 sm:h-18 lg:h-20 xl:h-24">
+      
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 group">
+          <div class="relative">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-primary-600 to-primary-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+              <span class="text-white font-bold text-lg sm:text-xl lg:text-2xl">CS</span>
+            </div>
+          </div>
+          <div class="hidden sm:block">
+            <span class="text-xl sm:text-2xl lg:text-3xl font-heading font-bold text-secondary-900 group-hover:text-primary-600 transition-colors duration-300">CodeStreet</span>
+            <p class="text-xs sm:text-sm text-secondary-600 -mt-1 font-medium">Data & AI Learning Center</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <a 
+          href="/" 
+          class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
+            currentPath === '/' 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          Home
+          {currentPath === '/' && (
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-500 rounded-full"></div>
+          )}
+        </a>
+        
+        <a 
+          href="/tracks" 
+          class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
+            currentPath.startsWith('/tracks') 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          Learning Tracks
+          {currentPath.startsWith('/tracks') && (
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-500 rounded-full"></div>
+          )}
+        </a>
+        
+        <a 
+          href="/about" 
+          class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
+            currentPath === '/about' 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          About
+          {currentPath === '/about' && (
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-500 rounded-full"></div>
+          )}
+        </a>
+        
+        <a 
+          href="/contact" 
+          class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
+            currentPath === '/contact' 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          Contact
+          {currentPath === '/contact' && (
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-500 rounded-full"></div>
+          )}
+        </a>
+        
+        <div class="ml-3 lg:ml-4">
+          <a href="/enroll" class="btn-primary text-sm lg:text-base px-4 lg:px-8 py-2 lg:py-4">
+            <svg class="w-4 lg:w-5 h-4 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span class="hidden lg:inline">Enroll Now</span>
+            <span class="lg:hidden">Enroll</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="lg:hidden">
+        <button 
+          type="button" 
+          class="mobile-menu-button w-10 h-10 sm:w-12 sm:h-12 bg-neutral-100 hover:bg-neutral-200 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-300 focus:ring-4 focus:ring-primary-100"
+          aria-label="Open menu"
+        >
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div class="mobile-menu hidden lg:hidden bg-white/95 backdrop-blur-3xl border-t border-neutral-200/50">
+    <div class="section-container">
+      <div class="py-4 sm:py-6 space-y-1 sm:space-y-2">
+        <a 
+          href="/" 
+          class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
+            currentPath === '/' 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          Home
+        </a>
+        
+        <a 
+          href="/tracks" 
+          class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
+            currentPath.startsWith('/tracks') 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          Learning Tracks
+        </a>
+        
+        <a 
+          href="/about" 
+          class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
+            currentPath === '/about' 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          About
+        </a>
+        
+        <a 
+          href="/contact" 
+          class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
+            currentPath === '/contact' 
+              ? 'text-primary-600 bg-primary-50' 
+              : 'text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+          }`}
+        >
+          Contact
+        </a>
+        
+        <div class="pt-3 sm:pt-4">
+          <a href="/enroll" class="btn-primary w-full justify-center text-base py-3 sm:py-4">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Enroll Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    let isMenuOpen = false;
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        
+        if (isMenuOpen) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenuButton.setAttribute('aria-label', 'Close menu');
+          // Change icon to X
+          mobileMenuButton.innerHTML = `
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          `;
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-label', 'Open menu');
+          // Change icon back to hamburger
+          mobileMenuButton.innerHTML = `
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          `;
+        }
+      });
+
+      // Close mobile menu when clicking on links
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          isMenuOpen = false;
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-label', 'Open menu');
+          mobileMenuButton.innerHTML = `
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          `;
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (isMenuOpen && !mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+          isMenuOpen = false;
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-label', 'Open menu');
+          mobileMenuButton.innerHTML = `
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          `;
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Ensure navigation stays above other content */
+  .main-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  /* Smooth transitions for mobile menu */
+  .mobile-menu {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Active link indicator */
+  .main-nav a[class*="text-primary-600"]::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+  }
+  
+  .main-nav a {
+    position: relative;
+  }
+</style>

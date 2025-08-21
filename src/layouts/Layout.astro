@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Transform your career with comprehensive Data Science and AI training at CodeStreet. From foundations to enterprise-ready expertise." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Fonts are imported in global.css -->
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="data science, AI training, machine learning, data analytics, Python, SQL, BigQuery, AI courses" />
+    <meta name="author" content="CodeStreet" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="CodeStreet - Data & AI Learning Center" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    
+    <title>{title} | CodeStreet - Data & AI Learning Center</title>
+    
+    
+    <!-- View Transitions API for smooth page navigation -->
+    <meta name="view-transition" content="same-origin" />
+  </head>
+  
+  <body class="antialiased scrollbar-thin">
+    <slot />
+    <Footer />
+    
+    <!-- View Transitions Enhancement -->
+    <script>
+      // Enable View Transitions API if supported
+      if ('startViewTransition' in document) {
+        // Handle navigation with view transitions
+        document.addEventListener('astro:page-load', () => {
+          console.log('Page loaded with view transitions');
+        });
+      }
+      
+      // Smooth scroll for anchor links
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="#"]');
+        if (link) {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* View Transition Styles */
+  @view-transition {
+    navigation: auto;
+  }
+  
+  /* Custom view transition names for specific elements */
+  .hero-title {
+    view-transition-name: hero-title;
+  }
+  
+  .main-nav {
+    view-transition-name: main-navigation;
+  }
+  
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from './Navigation.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pageTitle?: string;
+  pageSubtitle?: string;
+  headerStyle?: 'hero' | 'standard' | 'minimal';
+}
+
+const { 
+  title, 
+  description, 
+  pageTitle = title, 
+  pageSubtitle,
+  headerStyle = 'standard'
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <Navigation />
+  
+  {headerStyle !== 'minimal' && (
+    <header class="page-header">
+      <!-- Decorative Background Elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-10 sm:top-20 left-5 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 bg-primary-200/30 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-32 sm:w-40 h-32 sm:h-40 bg-primary-300/20 rounded-full blur-3xl animate-float animation-delay-400"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-gradient-to-r from-primary-100/40 to-primary-200/30 rounded-full blur-3xl"></div>
+      </div>
+      
+      <!-- Grid Pattern Overlay -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.1) 1px, transparent 0); background-size: 20px 20px; background-size: 30px 30px;"></div>
+      </div>
+      
+      <div class="section-container relative z-10">
+        <div class="text-center px-4 sm:px-6 lg:px-0">
+          <h1 class="page-title">{pageTitle}</h1>
+          {pageSubtitle && (
+            <p class="page-subtitle">{pageSubtitle}</p>
+          )}
+        </div>
+      </div>
+    </header>
+  )}
+  
+  <main class={headerStyle === 'minimal' ? 'pt-16 sm:pt-20 lg:pt-24' : ''}>
+    <slot />
+  </main>
+</Layout>
+
+<style>
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(14, 165, 233, 0.1) 50%, transparent 100%);
+    pointer-events: none;
+  }
+</style>
