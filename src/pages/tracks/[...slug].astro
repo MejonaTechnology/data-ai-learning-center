@@ -25,6 +25,15 @@ const levelBadgeStyle = track.data.level === 'foundation' ? 'from-emerald-400 to
 const levelAccentStyle = track.data.level === 'foundation' ? 'emerald' :
                         track.data.level === 'specialization' ? 'orange' : 
                         'purple';
+
+// Helper function for proper URLs
+const baseUrl = import.meta.env.BASE_URL || '/';
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  // Ensure baseUrl ends with slash before adding path
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  return normalizedBase + path;
+};
 ---
 
 <PageLayout 
@@ -342,13 +351,13 @@ const levelAccentStyle = track.data.level === 'foundation' ? 'emerald' :
           
           <!-- Enhanced Action Buttons -->
           <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-10 lg:mb-12 animate-slide-up animation-delay-400 px-4 sm:px-6 lg:px-0">
-            <a href="/enroll" class="group btn-cta-solid">
+            <a href={createUrl('/enroll')} class="group btn-cta-solid">
               <span>Enroll in This Track</span>
               <svg class="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>
             </a>
-            <a href="/tracks" class="btn-cta-outline font-semibold">
+            <a href={createUrl('/tracks')} class="btn-cta-outline font-semibold">
               <svg class="w-4 sm:w-5 h-4 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
               </svg>

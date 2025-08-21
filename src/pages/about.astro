@@ -1,5 +1,14 @@
 ---
 import PageLayout from '../components/PageLayout.astro';
+
+// Helper function for proper URLs
+const baseUrl = import.meta.env.BASE_URL || '/';
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  // Ensure baseUrl ends with slash before adding path
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  return normalizedBase + path;
+};
 ---
 
 <PageLayout 
@@ -201,10 +210,10 @@ import PageLayout from '../components/PageLayout.astro';
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="/enroll" class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-12 py-5 shadow-glow-lg">
+          <a href={createUrl('/enroll')} class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-12 py-5 shadow-glow-lg">
             Start Your Journey
           </a>
-          <a href="/tracks" class="btn-secondary text-lg px-12 py-5">
+          <a href={createUrl('/tracks')} class="btn-secondary text-lg px-12 py-5">
             Explore Tracks
           </a>
         </div>

@@ -4,6 +4,15 @@ import { getCollection } from 'astro:content';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks.sort((a, b) => a.data.order - b.data.order);
+
+// Helper function for proper URLs
+const baseUrl = import.meta.env.BASE_URL || '/';
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  // Ensure baseUrl ends with slash before adding path
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  return normalizedBase + path;
+};
 ---
 
 <PageLayout 
@@ -51,10 +60,10 @@ const sortedTracks = tracks.sort((a, b) => a.data.order - b.data.order);
                   )}
                   
                   <div class="flex flex-col sm:flex-row gap-4">
-                    <a href={`/tracks/${track.slug}`} class="btn-primary">
+                    <a href={createUrl(`/tracks/${track.slug}`)} class="btn-primary">
                       View Details
                     </a>
-                    <a href="/enroll" class="btn-secondary">
+                    <a href={createUrl('/enroll')} class="btn-secondary">
                       Enroll Now
                     </a>
                   </div>
@@ -92,7 +101,7 @@ const sortedTracks = tracks.sort((a, b) => a.data.order - b.data.order);
         <p class="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
           Choose the track that matches your career goals and start building your future today.
         </p>
-        <a href="/enroll" class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-10 py-5 shadow-glow-lg">
+        <a href={createUrl('/enroll')} class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-10 py-5 shadow-glow-lg">
           Enroll in Any Track
         </a>
       </div>
