@@ -1,5 +1,12 @@
 ---
 const currentYear = new Date().getFullYear();
+
+// Helper function for proper URLs
+const baseUrl = import.meta.env.BASE_URL || '/';
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  return baseUrl + path.slice(1);
+};
 ---
 
 <footer class="bg-secondary-900 text-secondary-300 relative overflow-hidden">
@@ -70,11 +77,11 @@ const currentYear = new Date().getFullYear();
       <div class="lg:col-span-2">
         <h3 class="text-base sm:text-lg font-heading font-semibold text-white mb-4 sm:mb-6">Quick Links</h3>
         <nav class="space-y-2 sm:space-y-3">
-          <a href="/" class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Home</a>
-          <a href="/about" class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">About Us</a>
-          <a href="/tracks" class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Learning Tracks</a>
-          <a href="/enroll" class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Enrollment</a>
-          <a href="/contact" class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Contact</a>
+          <a href={createUrl('/')} class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Home</a>
+          <a href={createUrl('/about')} class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">About Us</a>
+          <a href={createUrl('/tracks')} class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Learning Tracks</a>
+          <a href={createUrl('/enroll')} class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Enrollment</a>
+          <a href={createUrl('/contact')} class="block text-sm sm:text-base text-neutral-400 hover:text-white transition-colors duration-200">Contact</a>
         </nav>
       </div>
       
@@ -132,9 +139,9 @@ const currentYear = new Date().getFullYear();
         
         <!-- Legal Links -->
         <nav class="space-y-2">
-          <a href="/privacy" class="block text-sm text-neutral-500 hover:text-neutral-300 transition-colors duration-200">Privacy Policy</a>
-          <a href="/terms" class="block text-sm text-neutral-500 hover:text-neutral-300 transition-colors duration-200">Terms of Service</a>
-          <a href="/refund" class="block text-sm text-neutral-500 hover:text-neutral-300 transition-colors duration-200">Refund Policy</a>
+          <a href={createUrl('/privacy')} class="block text-sm text-neutral-500 hover:text-neutral-300 transition-colors duration-200">Privacy Policy</a>
+          <a href={createUrl('/terms')} class="block text-sm text-neutral-500 hover:text-neutral-300 transition-colors duration-200">Terms of Service</a>
+          <a href={createUrl('/refund')} class="block text-sm text-neutral-500 hover:text-neutral-300 transition-colors duration-200">Refund Policy</a>
         </nav>
       </div>
     </div>

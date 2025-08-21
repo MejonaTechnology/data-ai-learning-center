@@ -8,6 +8,13 @@ const sortedTracks = tracks.sort((a, b) => a.data.order - b.data.order);
 const foundationTracks = sortedTracks.filter(track => track.data.level === 'foundation');
 const specializationTracks = sortedTracks.filter(track => track.data.level === 'specialization');
 const advancedTracks = sortedTracks.filter(track => track.data.level === 'advanced');
+
+// Helper function for proper URLs
+const baseUrl = import.meta.env.BASE_URL || '/';
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  return baseUrl + path.slice(1);
+};
 ---
 
 <PageLayout 
@@ -127,7 +134,7 @@ const advancedTracks = sortedTracks.filter(track => track.data.level === 'advanc
         <!-- Enhanced CTA Section -->
         <div class="text-center mt-12 sm:mt-16 lg:mt-20 animate-slide-up animation-delay-1000 px-2 sm:px-4 lg:px-0">
           <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16">
-            <a href="/tracks" class="group relative btn-cta-primary overflow-hidden">
+            <a href={createUrl('/tracks')} class="group relative btn-cta-primary overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <svg class="w-5 sm:w-6 h-5 sm:h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
@@ -138,7 +145,7 @@ const advancedTracks = sortedTracks.filter(track => track.data.level === 'advanc
               </svg>
             </a>
             
-            <a href="/enroll" class="group btn-cta-secondary">
+            <a href={createUrl('/enroll')} class="group btn-cta-secondary">
               <svg class="w-5 sm:w-6 h-5 sm:h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
               </svg>
@@ -563,13 +570,13 @@ const advancedTracks = sortedTracks.filter(track => track.data.level === 'advanc
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-slide-up animation-delay-400 px-4 sm:px-6 lg:px-0">
-          <a href="/enroll" class="group btn-cta-solid">
+          <a href={createUrl('/enroll')} class="group btn-cta-solid">
             <span>Start Your Journey Today</span>
             <svg class="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a>
-          <a href="/contact" class="btn-cta-outline font-semibold">
+          <a href={createUrl('/contact')} class="btn-cta-outline font-semibold">
             <svg class="w-4 sm:w-5 h-4 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
             </svg>

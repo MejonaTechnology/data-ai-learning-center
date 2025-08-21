@@ -1,5 +1,12 @@
 ---
 const currentPath = Astro.url.pathname;
+const baseUrl = import.meta.env.BASE_URL || '/';
+
+// Helper function to create proper URLs
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  return baseUrl + path.slice(1);
+};
 ---
 
 <nav class="nav-glass">
@@ -8,7 +15,7 @@ const currentPath = Astro.url.pathname;
       
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 group">
+        <a href={createUrl('/')} class="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 group">
           <div class="relative">
             <div class="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-primary-600 to-primary-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
               <span class="text-white font-bold text-lg sm:text-xl lg:text-2xl">CS</span>
@@ -24,7 +31,7 @@ const currentPath = Astro.url.pathname;
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
         <a 
-          href="/" 
+          href={createUrl('/')} 
           class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
             currentPath === '/' 
               ? 'text-primary-600 bg-primary-50' 
@@ -38,7 +45,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <a 
-          href="/tracks" 
+          href={createUrl('/tracks')} 
           class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
             currentPath.startsWith('/tracks') 
               ? 'text-primary-600 bg-primary-50' 
@@ -52,7 +59,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <a 
-          href="/about" 
+          href={createUrl('/about')} 
           class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
             currentPath === '/about' 
               ? 'text-primary-600 bg-primary-50' 
@@ -66,7 +73,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <a 
-          href="/contact" 
+          href={createUrl('/contact')} 
           class={`relative px-3 lg:px-4 py-2 font-medium transition-all duration-300 rounded-lg lg:rounded-xl text-sm lg:text-base ${
             currentPath === '/contact' 
               ? 'text-primary-600 bg-primary-50' 
@@ -80,7 +87,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <div class="ml-3 lg:ml-4">
-          <a href="/enroll" class="btn-primary text-sm lg:text-base px-4 lg:px-8 py-2 lg:py-4">
+          <a href={createUrl('/enroll')} class="btn-primary text-sm lg:text-base px-4 lg:px-8 py-2 lg:py-4">
             <svg class="w-4 lg:w-5 h-4 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
@@ -110,7 +117,7 @@ const currentPath = Astro.url.pathname;
     <div class="section-container">
       <div class="py-4 sm:py-6 space-y-1 sm:space-y-2">
         <a 
-          href="/" 
+          href={createUrl('/')} 
           class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
             currentPath === '/' 
               ? 'text-primary-600 bg-primary-50' 
@@ -121,7 +128,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <a 
-          href="/tracks" 
+          href={createUrl('/tracks')} 
           class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
             currentPath.startsWith('/tracks') 
               ? 'text-primary-600 bg-primary-50' 
@@ -132,7 +139,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <a 
-          href="/about" 
+          href={createUrl('/about')} 
           class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
             currentPath === '/about' 
               ? 'text-primary-600 bg-primary-50' 
@@ -143,7 +150,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <a 
-          href="/contact" 
+          href={createUrl('/contact')} 
           class={`block px-4 sm:px-6 py-3 sm:py-4 font-medium transition-all duration-300 rounded-xl sm:rounded-2xl text-base ${
             currentPath === '/contact' 
               ? 'text-primary-600 bg-primary-50' 
@@ -154,7 +161,7 @@ const currentPath = Astro.url.pathname;
         </a>
         
         <div class="pt-3 sm:pt-4">
-          <a href="/enroll" class="btn-primary w-full justify-center text-base py-3 sm:py-4">
+          <a href={createUrl('/enroll')} class="btn-primary w-full justify-center text-base py-3 sm:py-4">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
