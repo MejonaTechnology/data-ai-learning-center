@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found - CodeStreet Data & AI Learning Center">
+  <main class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- 404 Visual -->
+      <div class="mb-8">
+        <div class="relative inline-block">
+          <h1 class="text-8xl sm:text-9xl font-bold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text">
+            404
+          </h1>
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-3xl blur-3xl -z-10"></div>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="mb-8">
+        <h2 class="text-2xl sm:text-3xl font-heading font-bold text-secondary-900 mb-4">
+          Oops! Page Not Found
+        </h2>
+        <p class="text-lg text-secondary-600 leading-relaxed">
+          The page you're looking for doesn't exist or has been moved. 
+          Let's get you back on track with our learning journey.
+        </p>
+      </div>
+
+      <!-- Navigation Options -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+        <a href="/data-ai-learning-center/" class="btn-primary px-8 py-4 text-lg">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          Go Home
+        </a>
+        
+        <a href="/data-ai-learning-center/tracks" class="btn-secondary px-8 py-4 text-lg">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+          View Learning Tracks
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="glass-card p-6">
+        <h3 class="text-lg font-semibold text-secondary-900 mb-4">Quick Links</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <a href="/data-ai-learning-center/about" class="text-primary-600 hover:text-primary-700 font-medium">About Us</a>
+          <a href="/data-ai-learning-center/tracks" class="text-primary-600 hover:text-primary-700 font-medium">Learning Tracks</a>
+          <a href="/data-ai-learning-center/enroll" class="text-primary-600 hover:text-primary-700 font-medium">Enrollment</a>
+          <a href="/data-ai-learning-center/contact" class="text-primary-600 hover:text-primary-700 font-medium">Contact</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Auto-redirect for common routing issues
+  const path = window.location.pathname;
+  const basePath = '/data-ai-learning-center';
+  
+  // If someone tries to access a route without the base path, redirect them
+  if (!path.startsWith(basePath) && path !== '/') {
+    const correctPath = basePath + path;
+    window.location.href = correctPath;
+  }
+</script>
