@@ -5,7 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://codestreet.co.in',
+  site: 'https://mejonatechnology.github.io',
+  base: '/data-ai-learning-center',
   integrations: [tailwind(), sitemap()],
   
   // Performance optimizations
