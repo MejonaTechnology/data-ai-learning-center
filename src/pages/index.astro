@@ -40,10 +40,10 @@ const createUrl = (path: string) => {
     </div>
 
     <!-- Main Content Container -->
-    <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-24">
       
       <!-- Status Badge -->
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 lg:mb-16">
         <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 shadow-lg">
           <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
           <span class="text-sm font-semibold text-white">2025 Enrollment Open</span>
@@ -51,14 +51,14 @@ const createUrl = (path: string) => {
       </div>
 
       <!-- Main Content Grid -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-24 items-center">
         
         <!-- Left Content -->
-        <div class="text-center lg:text-left space-y-8">
+        <div class="text-center lg:text-left space-y-8 lg:space-y-10">
           
           <!-- Main Headline -->
           <div class="space-y-4">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight">
               <span class="text-white">Master</span>
               <span class="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300 bg-clip-text text-transparent mt-2">
                 Data Science & AI
@@ -74,7 +74,7 @@ const createUrl = (path: string) => {
           </div>
 
           <!-- Key Features Pills -->
-          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <div class="flex flex-wrap gap-4 lg:gap-6 justify-center lg:justify-start">
             <div class="bg-white/10 backdrop-blur-xl border border-white/20 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
               <div class="flex items-center gap-2">
                 <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
@@ -96,7 +96,7 @@ const createUrl = (path: string) => {
           </div>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+          <div class="flex flex-col sm:flex-row gap-6 lg:gap-8 justify-center lg:justify-start">
             <a href={createUrl('/tracks')} 
                class="group inline-flex items-center justify-center gap-3 bg-white text-slate-900 hover:bg-blue-50 font-semibold px-10 py-5 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-white/25 hover:scale-105 transform">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,7 +118,7 @@ const createUrl = (path: string) => {
           </div>
 
           <!-- Trust Indicators -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 text-blue-200">
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 lg:gap-8 text-blue-200 mt-8 lg:mt-12">
             <div class="flex items-center gap-3">
               <div class="w-6 h-6 rounded-full bg-green-400/20 flex items-center justify-center">
                 <svg class="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -296,11 +296,10 @@ const createUrl = (path: string) => {
     </div>
   </section>
 
-  <!-- Career Path Diagram Section -->
   <!-- Career Path Section -->
-  <section class="section-padding bg-gradient-to-br from-slate-50 to-blue-50">
-    <div class="section-container">
-      <div class="text-center mb-16">
+  <section class="py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-slate-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div class="text-center mb-16 lg:mb-20">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
           Your Learning Journey
         </h2>
@@ -310,8 +309,8 @@ const createUrl = (path: string) => {
       </div>
       
       <!-- Career Path Image -->
-      <div class="max-w-6xl mx-auto">
-        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 sm:p-8 lg:p-12">
+      <div class="max-w-6xl mx-auto mb-16 lg:mb-20">
+        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 p-6 sm:p-8 lg:p-12">
           <img 
             src={createUrl('/path-flow-diagram.png')} 
             alt="Data Science and AI Career Path Diagram showing progression from Data Foundation Track to specialized tracks including BI Analyst, Data Engineer, Data Science, and AI Foundation leading to advanced specializations and capstone projects"
@@ -322,8 +321,8 @@ const createUrl = (path: string) => {
       </div>
 
       <!-- Path Highlights -->
-      <div class="grid md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
-        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
+        <div class="text-center p-8 bg-white rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
@@ -333,7 +332,7 @@ const createUrl = (path: string) => {
           <p class="text-slate-600">Start with solid fundamentals in Data Foundation Track before specializing</p>
         </div>
 
-        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+        <div class="text-center p-8 bg-white rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -343,7 +342,7 @@ const createUrl = (path: string) => {
           <p class="text-slate-600">Select from 4 specialized tracks based on your career goals</p>
         </div>
 
-        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+        <div class="text-center p-8 bg-white rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -371,9 +370,9 @@ const createUrl = (path: string) => {
       <div class="absolute top-1/2 left-1/4 w-64 h-64 bg-cyan-400/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 4s;"></div>
     </div>
 
-    <div class="relative section-container py-20 lg:py-32">
+    <div class="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-32">
       <!-- Premium Section Header -->
-      <div class="text-center mb-20">
+      <div class="text-center mb-20 lg:mb-24">
         <!-- Status Badge -->
         <div class="inline-flex items-center gap-3 bg-white/60 backdrop-blur-xl border border-blue-200/50 rounded-full px-6 py-3 shadow-lg mb-8">
           <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
@@ -634,7 +633,7 @@ const createUrl = (path: string) => {
       )}
 
       <!-- Call to Action -->
-      <div class="text-center mt-20">
+      <div class="text-center mt-20 lg:mt-24">
         <div class="bg-white/60 backdrop-blur-2xl border border-white/50 rounded-3xl p-8 lg:p-12 shadow-2xl max-w-4xl mx-auto">
           <h3 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
             Ready to Begin Your Learning Journey?
@@ -642,7 +641,7 @@ const createUrl = (path: string) => {
           <p class="text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed">
             Start with any track that matches your current skill level and career goals.
           </p>
-          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <div class="flex flex-col sm:flex-row gap-6 lg:gap-8 justify-center">
             <a href={createUrl('/tracks')} 
                class="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 hover:scale-105 transform">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -668,9 +667,9 @@ const createUrl = (path: string) => {
   </section>
 
   <!-- Stats Section -->
-  <section class="py-20 bg-slate-50 relative">
-    <div class="section-container">
-      <div class="text-center mb-16">
+  <section class="py-20 sm:py-24 lg:py-32 bg-slate-50 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div class="text-center mb-16 lg:mb-20">
         <div class="flex items-center justify-center gap-4 mb-8">
           <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -687,8 +686,8 @@ const createUrl = (path: string) => {
         </p>
       </div>
       
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
-        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-center hover:shadow-xl transition-all duration-300">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 max-w-5xl mx-auto">
+        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 text-center hover:shadow-xl hover:scale-105 transition-all duration-300">
           <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
             <span class="text-xl sm:text-2xl font-bold text-white">8</span>
           </div>
@@ -696,7 +695,7 @@ const createUrl = (path: string) => {
           <div class="text-sm sm:text-lg font-bold text-slate-800">Learning Tracks</div>
         </div>
         
-        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-center hover:shadow-xl transition-all duration-300">
+        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 text-center hover:shadow-xl hover:scale-105 transition-all duration-300">
           <div class="w-12 h-12 sm:w-16 sm:h-16 bg-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
             <span class="text-xl sm:text-2xl font-bold text-white">24</span>
           </div>
@@ -704,7 +703,7 @@ const createUrl = (path: string) => {
           <div class="text-sm sm:text-lg font-bold text-slate-800">Intensive Training</div>
         </div>
         
-        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-center hover:shadow-xl transition-all duration-300">
+        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 text-center hover:shadow-xl hover:scale-105 transition-all duration-300">
           <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-500 rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
             <span class="text-sm sm:text-xl font-bold text-white">GCP</span>
           </div>
@@ -712,7 +711,7 @@ const createUrl = (path: string) => {
           <div class="text-sm sm:text-lg font-bold text-slate-800">Certified Path</div>
         </div>
         
-        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-center hover:shadow-xl transition-all duration-300">
+        <div class="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 text-center hover:shadow-xl hover:scale-105 transition-all duration-300">
           <div class="w-12 h-12 sm:w-16 sm:h-16 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
             <span class="text-sm sm:text-xl font-bold text-white">AI</span>
           </div>
@@ -724,8 +723,8 @@ const createUrl = (path: string) => {
   </section>
 
   <!-- CTA Section -->
-  <section class="bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700 py-20 text-white text-center relative">
-    <div class="section-container">
+  <section class="bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700 py-20 sm:py-24 lg:py-32 text-white text-center relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-white">
           Ready to <span class="text-yellow-300">Transform Your Career?</span>
@@ -735,7 +734,7 @@ const createUrl = (path: string) => {
           Master in-demand skills with our comprehensive Data Science and AI curriculum. Get the hands-on experience and industry knowledge you need for career success.
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12">
+        <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center mb-8 sm:mb-12">
           <a href={createUrl('/enroll')} class="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-blue-600 hover:bg-blue-50 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 text-sm sm:text-base">
             <span>Start Your Journey Today</span>
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -751,7 +750,7 @@ const createUrl = (path: string) => {
         </div>
         
         <!-- Additional CTA Info -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 text-blue-100 text-sm">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 lg:gap-8 text-blue-100 text-sm">
           <div class="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
             <div class="w-4 h-4 bg-green-400 rounded-full flex items-center justify-center">
               <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
