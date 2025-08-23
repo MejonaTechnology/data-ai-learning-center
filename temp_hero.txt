@@ -1,0 +1,145 @@
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-slate-50 to-blue-50 py-20 lg:py-32">
+    <!-- Simple Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgb(59 130 246) 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Status Badge -->
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-3 bg-blue-100 border border-blue-200 rounded-full px-6 py-3 shadow-sm">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-sm font-semibold text-blue-800">2025 Enrollment Open</span>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <!-- Left Content -->
+          <div class="text-center lg:text-left">
+            
+            <!-- Main Headline -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <span class="text-slate-900">Master</span>
+              <span class="block text-blue-600 mt-2">Data Science & AI</span>
+            </h1>
+              
+            <!-- Subheading -->
+            <p class="text-lg sm:text-xl text-slate-700 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+              Transform your career with our comprehensive curriculum. Learn from industry experts through 
+              <span class="font-semibold text-blue-600">8 specialized tracks</span> designed for all skill levels.
+            </p>
+
+            <!-- Key Features -->
+            <div class="flex flex-wrap gap-3 mb-10 justify-center lg:justify-start">
+              <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold border border-blue-200">8 Learning Tracks</div>
+              <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold border border-green-200">24+ Weeks Training</div>
+              <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold border border-purple-200">GCP Certified</div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+              <a href={createUrl('/tracks')} class="group inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+                <span>Explore Learning Tracks</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </a>
+              
+              <a href={createUrl('/enroll')} class="inline-flex items-center justify-center gap-3 bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                </svg>
+                <span>Start Free Trial</span>
+              </a>
+            </div>
+
+            <!-- Course Info -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-slate-600">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-sm font-medium">Industry-aligned curriculum</span>
+              </div>
+              <div class="hidden sm:block text-slate-400">•</div>
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                </svg>
+                <span class="text-sm font-medium">Hands-on projects</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Visual -->
+          <div class="relative">
+            
+            <!-- Main Visual Card -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-xl">
+              <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-4">Start Your Journey</h3>
+                <p class="text-slate-600 mb-6">Comprehensive curriculum designed for career transformation</p>
+                
+                <!-- Course Features -->
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">8</div>
+                    <div class="text-sm text-slate-600">Learning Tracks</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-indigo-600">24+</div>
+                    <div class="text-sm text-slate-600">Weeks Training</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16">
+          <div class="bg-white border border-green-200 rounded-xl p-6 text-center shadow-lg">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-800 mb-2">Industry Certified</h4>
+            <p class="text-sm text-slate-600">Professional curriculum validated by industry leaders</p>
+          </div>
+          
+          <div class="bg-white border border-blue-200 rounded-xl p-6 text-center shadow-lg">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-800 mb-2">Comprehensive Curriculum</h4>
+            <p class="text-sm text-slate-600">Complete learning path from beginner to expert</p>
+          </div>
+          
+          <div class="bg-white border border-purple-200 rounded-xl p-6 text-center shadow-lg">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-800 mb-2">Job Placement</h4>
+            <p class="text-sm text-slate-600">Dedicated career support and placement assistance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
