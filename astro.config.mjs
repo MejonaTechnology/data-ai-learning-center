@@ -5,8 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.VERCEL ? 'https://data-ai-learning-center.vercel.app' : 'https://mejonatechnology.github.io',
-  base: process.env.VERCEL ? '' : '/data-ai-learning-center',
+  site: 'https://codestreet.com',
+  base: '/',
   integrations: [tailwind(), sitemap()],
   
   // Performance optimizations
