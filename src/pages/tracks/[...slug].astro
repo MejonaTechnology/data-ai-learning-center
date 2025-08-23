@@ -101,6 +101,17 @@ const createUrl = (path: string) => {
     </div>
   </section>
 
+  <!-- Sticky Course Name Header -->
+  <div id="sticky-header" class={`fixed top-16 sm:top-18 lg:top-20 xl:top-24 left-0 right-0 z-40 transform -translate-y-full transition-all duration-300 bg-gradient-to-r ${levelStyle} shadow-lg`}>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-center h-14 sm:h-16">
+        <h1 class="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-heading font-bold text-white text-center">
+          {track.data.title}
+        </h1>
+      </div>
+    </div>
+  </div>
+
     <!-- Modern Track Content -->
     <section class="py-16 sm:py-20 lg:py-24 xl:py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
       <!-- Subtle Background Elements -->
@@ -487,4 +498,43 @@ const createUrl = (path: string) => {
     transform: translateY(-2px);
     box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.4);
   }
+
+  /* Sticky header styles */
+  .sticky-header {
+    z-index: 45;
+  }
+  
+  .sticky-header.show {
+    transform: translateY(0);
+  }
+  
+  .sticky-header.hide {
+    transform: translateY(-100%);
+  }
 </style>
+
+<script>
+  // Sticky header functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyHeader = document.getElementById('sticky-header');
+    
+    if (!stickyHeader) return;
+    
+    function handleScroll() {
+      const scrollPosition = window.scrollY;
+      
+      // Show sticky header when scrolled down more than 300px
+      if (scrollPosition > 300) {
+        stickyHeader.style.transform = 'translateY(0)';
+      } else {
+        stickyHeader.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initial check
+    handleScroll();
+  });
+</script>

@@ -1,0 +1,232 @@
+---
+import PageLayout from '../components/PageLayout.astro';
+
+// Helper function for proper URLs
+const baseUrl = import.meta.env.BASE_URL || '/';
+const createUrl = (path: string) => {
+  if (path === '/') return baseUrl;
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  return normalizedBase + path;
+};
+---
+
+<PageLayout 
+  title="Terms of Service" 
+  description="CodeStreet's Terms of Service - Read the terms and conditions governing your use of our educational platform and services."
+  pageTitle="Terms of Service"
+  pageSubtitle="Please read these terms carefully as they govern your use of our educational services."
+>
+
+  <!-- Terms of Service Content -->
+  <section class="section-padding bg-white">
+    <div class="content-container">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none">
+          
+          <div class="text-sm text-secondary-500 mb-8">
+            <strong>Last updated:</strong> August 23, 2025
+          </div>
+
+          <div class="space-y-8">
+            
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">1. Agreement to Terms</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                By accessing and using CodeStreet's website and services, you accept and agree to be bound by the terms and provision of this agreement. These Terms of Service ("Terms") govern your use of our educational platform, courses, and related services.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">2. Description of Service</h2>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                CodeStreet provides online educational services including but not limited to:
+              </p>
+              <ul class="list-disc list-inside space-y-2 text-secondary-700">
+                <li>Data Science and AI learning programs</li>
+                <li>Specialized training tracks and courses</li>
+                <li>Educational content and materials</li>
+                <li>Career guidance and placement support</li>
+                <li>Certification programs</li>
+                <li>Community forums and learning resources</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">3. User Accounts and Registration</h2>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                To access certain features of our services, you must register for an account. You agree to:
+              </p>
+              <ul class="list-disc list-inside space-y-2 text-secondary-700">
+                <li>Provide accurate, current, and complete information</li>
+                <li>Maintain and update your account information</li>
+                <li>Keep your account credentials confidential</li>
+                <li>Accept responsibility for all activities under your account</li>
+                <li>Notify us immediately of any unauthorized use</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">4. Course Enrollment and Payment</h2>
+              
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Enrollment</h3>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                Course enrollment is subject to availability and our admission criteria. We reserve the right to accept or reject any enrollment application at our discretion.
+              </p>
+
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Payment Terms</h3>
+              <ul class="list-disc list-inside space-y-2 text-secondary-700">
+                <li>Course fees must be paid according to the agreed payment schedule</li>
+                <li>All payments are non-refundable unless specified in our Refund Policy</li>
+                <li>Late payment may result in suspension of access to course materials</li>
+                <li>Prices are subject to change with prior notice</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">5. User Conduct and Responsibilities</h2>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                You agree not to:
+              </p>
+              <ul class="list-disc list-inside space-y-2 text-secondary-700">
+                <li>Use our services for any unlawful or unauthorized purpose</li>
+                <li>Share your account credentials with others</li>
+                <li>Copy, distribute, or modify course content without permission</li>
+                <li>Engage in harassment, bullying, or inappropriate behavior</li>
+                <li>Attempt to breach our security or access unauthorized areas</li>
+                <li>Submit false or misleading information</li>
+                <li>Interfere with other users' learning experience</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">6. Intellectual Property Rights</h2>
+              
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Our Content</h3>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                All course materials, content, and intellectual property remain the exclusive property of CodeStreet or our licensors. You are granted a limited, non-exclusive license to access and use the content for personal educational purposes only.
+              </p>
+
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">User Content</h3>
+              <p class="text-secondary-700 leading-relaxed">
+                Any content you submit (assignments, projects, forum posts) remains your property, but you grant us a license to use it for educational and promotional purposes.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">7. Course Completion and Certification</h2>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                Certificates are awarded based on successful completion of course requirements, including:
+              </p>
+              <ul class="list-disc list-inside space-y-2 text-secondary-700">
+                <li>Attendance requirements</li>
+                <li>Assignment submissions</li>
+                <li>Project completion</li>
+                <li>Assessment scores</li>
+                <li>Overall course engagement</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">8. Placement and Career Services</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                While we provide career guidance and placement support, we cannot guarantee employment outcomes. Job placement depends on various factors including market conditions, individual performance, and effort.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">9. Service Availability</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                We strive to provide uninterrupted service but do not guarantee 100% uptime. We may temporarily suspend service for maintenance, updates, or technical issues without prior notice.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">10. Limitation of Liability</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                To the maximum extent permitted by law, CodeStreet shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of our services. Our total liability shall not exceed the amount paid for the specific service in question.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">11. Privacy Policy</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                Your privacy is important to us. Please review our <a href={createUrl('/privacy')} class="text-primary-600 hover:text-primary-700 underline">Privacy Policy</a> to understand how we collect, use, and protect your information.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">12. Termination</h2>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                We may terminate or suspend your account and access to our services at our discretion, including for:
+              </p>
+              <ul class="list-disc list-inside space-y-2 text-secondary-700">
+                <li>Violation of these Terms</li>
+                <li>Non-payment of fees</li>
+                <li>Inappropriate conduct</li>
+                <li>Fraudulent activity</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">13. Governing Law</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                These Terms shall be governed by and construed in accordance with the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Gurugram, Haryana.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">14. Changes to Terms</h2>
+              <p class="text-secondary-700 leading-relaxed">
+                We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting. Your continued use of our services after any changes constitutes acceptance of the new Terms.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">15. Contact Information</h2>
+              <p class="text-secondary-700 leading-relaxed mb-4">
+                If you have any questions about these Terms of Service, please contact us at:
+              </p>
+              <div class="bg-secondary-50 p-6 rounded-xl">
+                <p class="text-secondary-900 font-semibold mb-2">CodeStreet</p>
+                <p class="text-secondary-700 mb-1">Email: <a href="mailto:info@peakserves.com" class="text-primary-600 hover:text-primary-700">info@peakserves.com</a></p>
+                <p class="text-secondary-700 mb-1">Phone: <a href="tel:+919892200796" class="text-primary-600 hover:text-primary-700">+91 98922 00796</a></p>
+                <p class="text-secondary-700">
+                  Address: TOWER - E, CORONA OPTUS SOCIETY,<br>
+                  SECTOR 37C, GURUGRAM, HARYANA - 122001
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="gradient-hero section-padding text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-10 right-10 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 left-20 w-48 h-48 bg-accent-500/10 rounded-full blur-2xl animate-float animation-delay-400"></div>
+    </div>
+    
+    <div class="section-container relative z-10">
+      <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">
+        Ready to Start Your Learning Journey?
+      </h2>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+        Join thousands of students transforming their careers with our comprehensive programs.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href={createUrl('/enroll')} class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-12 py-5 shadow-glow-lg">
+          Enroll Now
+        </a>
+        <a href={createUrl('/tracks')} class="btn-secondary text-lg px-12 py-5">
+          View Courses
+        </a>
+      </div>
+    </div>
+  </section>
+
+</PageLayout>
