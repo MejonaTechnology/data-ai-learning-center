@@ -90,7 +90,7 @@ const createUrl = (path: string) => {
             <div class="bg-white/10 backdrop-blur-xl border border-white/20 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg">
               <div class="flex items-center gap-2">
                 <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
-                GCP Certified
+                Cloud Certification
               </div>
             </div>
           </div>
@@ -108,13 +108,6 @@ const createUrl = (path: string) => {
               </svg>
             </a>
               
-            <a href={createUrl('/enroll')} 
-               class="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-xl border-2 border-white/30 text-white hover:bg-white/20 font-semibold px-10 py-5 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-white/25 hover:scale-105 transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8"></path>
-              </svg>
-              <span class="text-lg">Start Free Trial</span>
-            </a>
           </div>
 
           <!-- Trust Indicators -->
@@ -235,11 +228,6 @@ const createUrl = (path: string) => {
             </svg>
           </div>
 
-          <div class="absolute -bottom-6 -left-6 w-14 h-14 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-2xl backdrop-blur-xl border border-white/10 flex items-center justify-center shadow-2xl">
-            <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-          </div>
         </div>
       </div>
 
@@ -288,12 +276,6 @@ const createUrl = (path: string) => {
       </div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-      </svg>
-    </div>
   </section>
 
   <!-- Career Path Section -->
@@ -309,49 +291,18 @@ const createUrl = (path: string) => {
       </div>
       
       <!-- Career Path Image -->
-      <div class="max-w-7xl mx-auto mb-16 lg:mb-20">
+      <div class="max-w-7xl mx-auto">
         <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 p-6 sm:p-8 lg:p-12">
           <img 
             src={createUrl('/path-flow-diagram.png')} 
             alt="Data Science and AI Career Path Diagram showing progression from Data Foundation Track to specialized tracks including BI Analyst, Data Engineer, Data Science, and AI Foundation leading to advanced specializations and capstone projects"
-            class="w-full h-auto rounded-xl shadow-lg"
+            class="w-full h-auto rounded-xl"
+            style="filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 4px rgba(59, 130, 246, 0.2));"
             loading="lazy"
           />
         </div>
       </div>
 
-      <!-- Path Highlights -->
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
-        <div class="text-center p-8 bg-white rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
-          <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Foundation First</h3>
-          <p class="text-slate-600">Start with solid fundamentals in Data Foundation Track before specializing</p>
-        </div>
-
-        <div class="text-center p-8 bg-white rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
-          <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Choose Your Path</h3>
-          <p class="text-slate-600">Select from 4 specialized tracks based on your career goals</p>
-        </div>
-
-        <div class="text-center p-8 bg-white rounded-xl shadow-lg border border-slate-200 hover:shadow-xl transition-shadow duration-300">
-          <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Expert Level</h3>
-          <p class="text-slate-600">Advance to specialized tracks and complete capstone portfolio projects</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -653,13 +604,6 @@ const createUrl = (path: string) => {
               </svg>
             </a>
               
-            <a href={createUrl('/enroll')} 
-               class="inline-flex items-center justify-center gap-3 bg-white/60 backdrop-blur-xl border-2 border-blue-200/50 text-blue-700 hover:bg-white/80 hover:border-blue-300/50 font-bold px-8 py-4 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-xl hover:scale-105 transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8"></path>
-              </svg>
-              <span class="text-lg">Start Free Trial</span>
-            </a>
           </div>
         </div>
       </div>
@@ -741,40 +685,6 @@ const createUrl = (path: string) => {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
           </a>
-          <a href={createUrl('/contact')} class="inline-flex items-center justify-center gap-2 sm:gap-3 bg-white/20 backdrop-blur-xl border-2 border-white/50 text-white hover:bg-white/30 font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 text-sm sm:text-base">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-            </svg>
-            <span>Schedule a Call</span>
-          </a>
-        </div>
-        
-        <!-- Additional CTA Info -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 lg:gap-8 text-blue-100 text-sm">
-          <div class="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
-            <div class="w-4 h-4 bg-green-400 rounded-full flex items-center justify-center">
-              <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <span class="font-semibold">No commitment trial</span>
-          </div>
-          <div class="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
-            <div class="w-4 h-4 bg-blue-400 rounded-full flex items-center justify-center">
-              <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <span class="font-semibold">Flexible payment plans</span>
-          </div>
-          <div class="flex items-center gap-3 bg-white/20 backdrop-blur-xl rounded-full px-6 py-3 border border-white/30">
-            <div class="w-4 h-4 bg-purple-400 rounded-full flex items-center justify-center">
-              <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <span class="font-semibold">Career support included</span>
-          </div>
         </div>
       </div>
     </div>
