@@ -1,6 +1,5 @@
 ---
 import PageLayout from '../components/PageLayout.astro';
-import CareerPathDiagram from '../components/CareerPathDiagram.astro';
 import { getCollection } from 'astro:content';
 
 // Get all learning tracks
@@ -298,7 +297,64 @@ const createUrl = (path: string) => {
   </section>
 
   <!-- Career Path Diagram Section -->
-  <CareerPathDiagram />
+  <!-- Career Path Section -->
+  <section class="section-padding bg-gradient-to-br from-slate-50 to-blue-50">
+    <div class="section-container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Your Learning Journey
+        </h2>
+        <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto">
+          Comprehensive career paths designed to take you from foundations to industry expertise
+        </p>
+      </div>
+      
+      <!-- Career Path Image -->
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 sm:p-8 lg:p-12">
+          <img 
+            src={createUrl('/career-path-diagram.png')} 
+            alt="Data Science and AI Career Path Diagram showing progression from Data Foundation Track to specialized tracks including BI Analyst, Data Engineer, Data Science, and AI Foundation leading to advanced specializations and capstone projects"
+            class="w-full h-auto rounded-xl shadow-lg"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Path Highlights -->
+      <div class="grid md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
+        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+          <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Foundation First</h3>
+          <p class="text-slate-600">Start with solid fundamentals in Data Foundation Track before specializing</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+          <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Choose Your Path</h3>
+          <p class="text-slate-600">Select from 4 specialized tracks based on your career goals</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+          <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Expert Level</h3>
+          <p class="text-slate-600">Advance to specialized tracks and complete capstone portfolio projects</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Learning Tracks Section -->
   <section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
