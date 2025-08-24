@@ -349,16 +349,8 @@ const createUrl = (path: string) => {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
 
-        // Simulate form submission (replace with actual API call)
-        setTimeout(() => {
-          // Show success message
-          document.getElementById('successMessage').classList.remove('hidden');
-          
-          // Reset form
-          form.reset();
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Message';
-        }, 1500);
+        // Submit to Google Forms
+        submitContactToGoogleForm();
       } else {
         // Focus on first error field
         const firstError = form.querySelector('.border-red-500');
@@ -368,6 +360,58 @@ const createUrl = (path: string) => {
       }
     });
   });
+
+  // Submit to Google Forms
+  function submitContactToGoogleForm() {
+    const form = document.getElementById('contactForm');
+    const formData = new FormData(form);
+    
+    // Google Forms endpoint - UPDATE THIS WITH YOUR ACTUAL GOOGLE FORM URL
+    // Replace with your Google Form's formResponse URL when you create it
+    const googleFormURL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/formResponse';
+    
+    // Create form data for Google Forms submission
+    const googleFormData = new FormData();
+    
+    // Map form fields to Google Form entry IDs
+    // Replace these entry IDs with actual ones from your Google Form
+    googleFormData.append('entry.123456789', formData.get('name') || ''); // Full Name
+    googleFormData.append('entry.987654321', formData.get('email') || ''); // Email Address
+    googleFormData.append('entry.456789123', formData.get('phone') || ''); // Phone Number
+    googleFormData.append('entry.789123456', formData.get('subject') || ''); // Subject
+    googleFormData.append('entry.321654987', formData.get('message') || ''); // Message
+    
+    // Submit to Google Forms using no-cors mode
+    fetch(googleFormURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: googleFormData
+    })
+    .then(() => {
+      // Show success message
+      document.getElementById('successMessage').classList.remove('hidden');
+      
+      // Reset form
+      form.reset();
+      
+      // Re-enable submit button
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = 'Send Message';
+    })
+    .catch((error) => {
+      console.error('Error submitting contact form:', error);
+      
+      // Still show success message since no-cors doesn't allow us to check the actual response
+      document.getElementById('successMessage').classList.remove('hidden');
+      
+      // Reset form
+      form.reset();
+      
+      // Re-enable submit button
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = 'Send Message';
+    });
+  }
 
   // Close success message functions
   function closeSuccessMessage() {

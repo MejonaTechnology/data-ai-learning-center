@@ -621,16 +621,19 @@ const createUrl = (path: string) => {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Validate all fields
+      // Validate ALL required fields including text, select, and textarea
       let isFormValid = true;
-      fields.forEach(field => {
-        if (field.type !== 'radio' && !validateField(field)) {
+      const requiredTextFields = ['fullName', 'email', 'mobile', 'college', 'degree', 'graduation', 'jobType', 'expectedCTC', 'questions'];
+      
+      // Validate all text/select/textarea fields
+      requiredTextFields.forEach(fieldName => {
+        const field = form.querySelector(`[name="${fieldName}"]`);
+        if (field && !validateField(field)) {
           isFormValid = false;
         }
       });
 
-
-      // Validate radio button groups
+      // Validate ALL radio button groups (ALL are required)
       const radioGroups = ['whyJoin', 'excitement', 'commitment', 'aptitudeTest', 'feeStructure'];
       radioGroups.forEach(groupName => {
         const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
@@ -638,7 +641,7 @@ const createUrl = (path: string) => {
         if (!checkedRadio) {
           isFormValid = false;
           if (errorElement) {
-            errorElement.textContent = 'Please select an option';
+            errorElement.textContent = 'This field is required - please select an option';
             errorElement.classList.remove('hidden');
           }
         } else {
@@ -648,7 +651,7 @@ const createUrl = (path: string) => {
         }
       });
 
-      // Check terms checkbox
+      // Check terms checkbox (required)
       const termsCheckbox = document.getElementById('terms');
       const termsError = document.getElementById('terms-error');
       if (!termsCheckbox.checked) {
@@ -671,6 +674,12 @@ const createUrl = (path: string) => {
         const firstError = form.querySelector('.border-red-500');
         if (firstError) {
           firstError.focus();
+        } else {
+          // If no field with border error, find first empty required field
+          const firstEmptyField = form.querySelector('input[required]:invalid, select[required]:invalid, textarea[required]:invalid');
+          if (firstEmptyField) {
+            firstEmptyField.focus();
+          }
         }
       }
     });
@@ -681,59 +690,172 @@ const createUrl = (path: string) => {
     const form = document.getElementById('enrollmentForm');
     const formData = new FormData(form);
     
-    // Google Forms endpoint (from your URL: https://forms.gle/LfSctkcb5zEYVfFz6)
-    const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSezVPf-8lEEZoVcDonb4oUJhL-TeG9jydiq6zTvL3gfchPYHw/formResponse';
+    // Google Forms endpoint - exact URL from the form HTML
+    const googleFormURL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSezVPf-8lEEZoVcDonb4oUJhL-TeG9jydiq6zTvL3gfchPYHw/formResponse';
     
     // Create form data for Google Forms submission
     const googleFormData = new FormData();
     
-    // Map form fields directly to Google Form entry IDs
-    googleFormData.append('entry.474503873', formData.get('fullName') || ''); // Full Name
-    googleFormData.append('entry.395122520', formData.get('email') || ''); // Email Address
-    googleFormData.append('entry.490734768', formData.get('mobile') || ''); // Mobile Number
-    googleFormData.append('entry.1870615356', formData.get('college') || ''); // College Name
-    googleFormData.append('entry.624850530', formData.get('degree') || ''); // Degree & Branch
-    googleFormData.append('entry.1176946467', formData.get('graduation') || ''); // Year of Graduation
+    // Validate and map text input fields (ensure no empty values)
+    const textFields = {
+      'entry.474503873': formData.get('fullName')?.trim(), // Full Name
+      'entry.395122520': formData.get('email')?.trim(), // Email Address
+      'entry.490734768': formData.get('mobile')?.trim(), // Mobile Number
+      'entry.1870615356': formData.get('college')?.trim(), // College Name
+      'entry.624850530': formData.get('degree')?.trim(), // Degree & Branch
+      'entry.1176946467': formData.get('graduation')?.trim(), // Year of Graduation
+      'entry.1279825415': formData.get('jobType')?.trim(), // Job type aiming for
+      'entry.956741069': formData.get('expectedCTC')?.trim(), // Expected CTC
+      'entry.923650440': formData.get('questions')?.trim() // Any questions
+    };
     
-    googleFormData.append('entry.1969104661', formData.get('whyJoin') || ''); // Why join program
-    googleFormData.append('entry.1279825415', formData.get('jobType') || ''); // Job type aiming for
-    googleFormData.append('entry.956741069', formData.get('expectedCTC') || ''); // Expected CTC
-    googleFormData.append('entry.129557825', formData.get('excitement') || ''); // What excites you most
-    googleFormData.append('entry.788782582', formData.get('commitment') || ''); // Willing to commit 6 months
-    googleFormData.append('entry.711643485', formData.get('aptitudeTest') || ''); // Willing to appear for aptitude test
-    googleFormData.append('entry.847211950', formData.get('feeStructure') || ''); // Understanding of Fee Structure
-    googleFormData.append('entry.923650440', formData.get('questions') || ''); // Any questions
+    // Map radio button fields to their correct entry IDs
+    const radioFields = {
+      'entry.894158014': formData.get('whyJoin'), // Why join program
+      'entry.1718581503': formData.get('excitement'), // What excites you most
+      'entry.634248384': formData.get('commitment'), // Willing to commit 6 months
+      'entry.516485442': formData.get('aptitudeTest'), // Willing to appear for aptitude test
+      'entry.1889721110': formData.get('feeStructure') // Understanding of Fee Structure
+    };
     
-    // Submit to Google Forms using no-cors mode
-    fetch(googleFormURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: googleFormData
-    })
-    .then(() => {
-      // Show success message
-      showSuccessMessage();
-      
-      // Reset form
-      form.reset();
-      
-      
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('submitBtn').textContent = 'Enroll Now';
-    })
-    .catch((error) => {
-      console.error('Error submitting form:', error);
-      
-      // Still show success message since no-cors doesn't allow us to check the actual response
-      showSuccessMessage();
-      
-      // Reset form
-      form.reset();
-      
-      
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('submitBtn').textContent = 'Enroll Now';
+    // Check for empty required fields before submission
+    let hasEmptyFields = false;
+    const emptyFields = [];
+    
+    Object.entries(textFields).forEach(([entryId, value]) => {
+      if (!value || value.length === 0) {
+        hasEmptyFields = true;
+        emptyFields.push(entryId);
+      } else {
+        googleFormData.append(entryId, value);
+      }
     });
+    
+    Object.entries(radioFields).forEach(([entryId, value]) => {
+      if (!value || value.length === 0) {
+        hasEmptyFields = true;
+        emptyFields.push(entryId);
+      } else {
+        googleFormData.append(entryId, value);
+      }
+    });
+    
+    if (hasEmptyFields) {
+      console.error('Empty required fields detected:', emptyFields);
+      alert('Please fill in all required fields before submitting.');
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = 'Submit Application';
+      return;
+    }
+    
+    // Add required sentinel fields for radio button groups (from Google Form HTML)
+    googleFormData.append('entry.894158014_sentinel', '');
+    googleFormData.append('entry.1718581503_sentinel', '');
+    googleFormData.append('entry.634248384_sentinel', '');
+    googleFormData.append('entry.516485442_sentinel', '');
+    googleFormData.append('entry.1889721110_sentinel', '');
+    
+    // Add required hidden fields
+    googleFormData.append('fvv', '1');
+    googleFormData.append('partialResponse', '[null,null,"' + Date.now() + '"]');
+    googleFormData.append('pageHistory', '0');
+    googleFormData.append('fbzx', Math.floor(Math.random() * 1000000000000000).toString());
+    googleFormData.append('submissionTimestamp', Date.now().toString());
+    
+    // Log all form data for debugging
+    console.log('=== FORM SUBMISSION DEBUG ===');
+    console.log('Raw form data from form:');
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: "${value}"`);
+    }
+    console.log('\nGoogle Form data being sent:');
+    for (let [key, value] of googleFormData.entries()) {
+      console.log(`${key}: "${value}"`);
+    }
+    
+    // Try with URLSearchParams instead of FormData for better compatibility
+    const urlParams = new URLSearchParams();
+    for (let [key, value] of googleFormData.entries()) {
+      urlParams.append(key, value);
+    }
+    
+    console.log('\nSubmitting as URL encoded data:', urlParams.toString());
+    
+    // Try alternative method: Create a hidden form and submit it to Google Forms
+    try {
+      const hiddenForm = document.createElement('form');
+      hiddenForm.method = 'POST';
+      hiddenForm.action = googleFormURL;
+      hiddenForm.target = 'hidden_iframe';
+      hiddenForm.style.display = 'none';
+      
+      // Create hidden iframe to catch the response
+      let iframe = document.getElementById('hidden_iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'hidden_iframe';
+        iframe.id = 'hidden_iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+      
+      // Add all form fields as hidden inputs
+      for (let [key, value] of googleFormData.entries()) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        hiddenForm.appendChild(input);
+      }
+      
+      document.body.appendChild(hiddenForm);
+      
+      // Set up iframe onload handler
+      iframe.onload = function() {
+        console.log('Form submitted to Google Forms via iframe');
+        showSuccessMessage();
+        form.reset();
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('submitBtn').textContent = 'Submit Application';
+        
+        // Clean up
+        if (document.body.contains(hiddenForm)) {
+          document.body.removeChild(hiddenForm);
+        }
+      };
+      
+      console.log('Submitting form via hidden iframe method...');
+      hiddenForm.submit();
+      
+    } catch (error) {
+      console.error('Error with iframe submission, falling back to fetch:', error);
+      
+      // Fallback to fetch method
+      fetch(googleFormURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: urlParams
+      })
+      .then(() => {
+        console.log('Form submitted successfully via fetch fallback');
+        showSuccessMessage();
+        form.reset();
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('submitBtn').textContent = 'Submit Application';
+      })
+      .catch((fetchError) => {
+        console.error('Error with fetch submission:', fetchError);
+        
+        // Still show success since we can't tell with no-cors
+        showSuccessMessage();
+        form.reset();
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('submitBtn').textContent = 'Submit Application';
+      });
+    }
   }
 
   // Show success message
