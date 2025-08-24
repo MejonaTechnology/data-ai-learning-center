@@ -216,6 +216,9 @@ const createUrl = (path: string) => {
                     <div id="message-error" class="text-red-500 text-sm mt-1 hidden" role="alert"></div>
                   </div>
 
+                  <!-- Honeypot field for spam protection (hidden from users) -->
+                  <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+                  
                   <!-- Submit Button -->
                   <div class="text-center pt-4">
                     <button 
@@ -349,8 +352,8 @@ const createUrl = (path: string) => {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
 
-        // Submit to Google Forms
-        submitContactToGoogleForm();
+        // Submit to Web3Forms
+        submitContactToWeb3Forms();
       } else {
         // Focus on first error field
         const firstError = form.querySelector('.border-red-500');
@@ -362,61 +365,94 @@ const createUrl = (path: string) => {
   });
 
   // Submit to Google Forms
-  function submitContactToGoogleForm() {
+  async function submitContactToWeb3Forms() {
     const form = document.getElementById('contactForm');
     const formData = new FormData(form);
     
-    // Google Forms endpoint - UPDATE THIS WITH YOUR ACTUAL GOOGLE FORM URL
-    // Replace with your Google Form's formResponse URL when you create it
-    const googleFormURL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/formResponse';
+    try {
+      
+      // Convert FormData to enhanced format using Web3Forms advanced options
+      const formObject = {
+        // Basic Web3Forms configuration
+        access_key: '67dd91be-9653-4e07-b713-33b06939d02f',
+        
+        // Enhanced email configuration
+        subject: `💬 Contact Form: ${formData.get('subject')} - ${formData.get('name')}`,
+        from_name: `${formData.get('name')} via CodeStreet`,
+        replyto: formData.get('email'),
+        
+        // Structured contact message
+        message: `
+📞 CONTACT FORM SUBMISSION
+═════════════════════════════
+
+👤 CONTACT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+• Full Name: ${formData.get('name')}
+• Email Address: ${formData.get('email')}
+• Phone Number: ${formData.get('phone') || 'Not provided'}
+
+📝 MESSAGE DETAILS
+━━━━━━━━━━━━━━━━━━━━
+• Subject: ${formData.get('subject')}
+
+• Message:
+"${formData.get('message')}"
+
+📅 Submitted: ${new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})}
+🌐 Source: CodeStreet Contact Form
+        `,
+        
+        // Individual fields for structured data
+        contact_name: formData.get('name'),
+        contact_email: formData.get('email'),
+        contact_phone: formData.get('phone') || 'Not provided',
+        contact_subject: formData.get('subject'),
+        contact_message: formData.get('message'),
+        
+        // Advanced Web3Forms options
+        _template: 'table',
+        _subject: `💬 Contact: ${formData.get('subject')} - ${formData.get('name')}`,
+        _captcha: false
+      };
+      
+      // Submit to Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formObject)
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        // Show success message
+        document.getElementById('successMessage').classList.remove('hidden');
+        form.reset();
+      } else {
+        console.error('Web3Forms contact submission failed:', data);
+        alert('There was an error sending your message: ' + (data.message || 'Please try again.'));
+      }
+    } catch (error) {
+      console.error('Error submitting contact form to Web3Forms:', error);
+      alert('There was an error sending your message. Please try again or contact us directly.');
+    }
     
-    // Create form data for Google Forms submission
-    const googleFormData = new FormData();
-    
-    // Map form fields to Google Form entry IDs
-    // Replace these entry IDs with actual ones from your Google Form
-    googleFormData.append('entry.123456789', formData.get('name') || ''); // Full Name
-    googleFormData.append('entry.987654321', formData.get('email') || ''); // Email Address
-    googleFormData.append('entry.456789123', formData.get('phone') || ''); // Phone Number
-    googleFormData.append('entry.789123456', formData.get('subject') || ''); // Subject
-    googleFormData.append('entry.321654987', formData.get('message') || ''); // Message
-    
-    // Submit to Google Forms using no-cors mode
-    fetch(googleFormURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: googleFormData
-    })
-    .then(() => {
-      // Show success message
-      document.getElementById('successMessage').classList.remove('hidden');
-      
-      // Reset form
-      form.reset();
-      
-      // Re-enable submit button
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('submitBtn').textContent = 'Send Message';
-    })
-    .catch((error) => {
-      console.error('Error submitting contact form:', error);
-      
-      // Still show success message since no-cors doesn't allow us to check the actual response
-      document.getElementById('successMessage').classList.remove('hidden');
-      
-      // Reset form
-      form.reset();
-      
-      // Re-enable submit button
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('submitBtn').textContent = 'Send Message';
-    });
+    // Re-enable submit button
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = 'Send Message';
   }
 
   // Close success message functions
   function closeSuccessMessage() {
     document.getElementById('successMessage').classList.add('hidden');
   }
+
+  // Make function globally available
+  window.closeSuccessMessage = closeSuccessMessage;
 
   // Close on outside click
   document.getElementById('successMessage').addEventListener('click', function(e) {
