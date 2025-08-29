@@ -299,7 +299,6 @@ const createUrl = (path: string) => {
                         <option value="2025">2025</option>
                         <option value="2026">2026</option>
                         <option value="2027">2027</option>
-                        <option value="Already Graduated">Already Graduated</option>
                       </select>
                       <div id="graduation-error" class="text-red-500 text-sm mt-1 hidden" role="alert"></div>
                     </div>
@@ -313,21 +312,28 @@ const createUrl = (path: string) => {
                 </label>
                 <div class="space-y-3" id="whyJoin" aria-describedby="whyJoin-error">
                   <label class="flex items-center">
-                    <input type="radio" name="whyJoin" value="To gain real work experience" class="mr-3" required>
+                    <input type="checkbox" name="whyJoin" value="To gain real work experience" class="mr-3">
                     <span>To gain real work experience</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="whyJoin" value="To improve my chances of getting a job" class="mr-3" required>
+                    <input type="checkbox" name="whyJoin" value="To improve my chances of getting a job" class="mr-3">
                     <span>To improve my chances of getting a job</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="whyJoin" value="To earn while I learn" class="mr-3" required>
+                    <input type="checkbox" name="whyJoin" value="To earn while I learn" class="mr-3">
                     <span>To earn while I learn</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="whyJoin" value="To build confidence & professional skills" class="mr-3" required>
+                    <input type="checkbox" name="whyJoin" value="To build confidence & professional skills" class="mr-3">
                     <span>To build confidence & professional skills</span>
                   </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="whyJoin" value="Other" class="mr-3" id="whyJoinOther">
+                    <span>Other</span>
+                  </label>
+                  <div id="whyJoinOtherText" class="hidden ml-6 mt-2">
+                    <textarea name="whyJoinOtherText" rows="2" class="form-textarea w-full" placeholder="Please specify..."></textarea>
+                  </div>
                 </div>
                 
                 
@@ -375,25 +381,32 @@ const createUrl = (path: string) => {
                 </label>
                 <div class="space-y-3" id="excitement" aria-describedby="excitement-error">
                   <label class="flex items-center">
-                    <input type="radio" name="excitement" value="Guaranteed internship with stipend" class="mr-3" required>
+                    <input type="checkbox" name="excitement" value="Guaranteed internship with stipend" class="mr-3">
                     <span>Guaranteed internship with stipend</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="excitement" value="Placement support after internship" class="mr-3" required>
+                    <input type="checkbox" name="excitement" value="Placement support after internship" class="mr-3">
                     <span>Placement support after internship</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="excitement" value="Training by industry experts" class="mr-3" required>
+                    <input type="checkbox" name="excitement" value="Training by industry experts" class="mr-3">
                     <span>Training by industry experts</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="excitement" value="Real corporate exposure" class="mr-3" required>
+                    <input type="checkbox" name="excitement" value="Real corporate exposure" class="mr-3">
                     <span>Real corporate exposure</span>
                   </label>
                   <label class="flex items-center">
-                    <input type="radio" name="excitement" value="Internship certificate to strengthen CV" class="mr-3" required>
+                    <input type="checkbox" name="excitement" value="Internship certificate to strengthen CV" class="mr-3">
                     <span>Internship certificate to strengthen CV</span>
                   </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="excitement" value="Other" class="mr-3" id="excitementOther">
+                    <span>Other</span>
+                  </label>
+                  <div id="excitementOtherText" class="hidden ml-6 mt-2">
+                    <textarea name="excitementOtherText" rows="2" class="form-textarea w-full" placeholder="Please specify..."></textarea>
+                  </div>
                 </div>
                 <div id="excitement-error" class="text-red-500 text-sm mt-1 hidden" role="alert"></div>
               </div>
@@ -659,8 +672,38 @@ const createUrl = (path: string) => {
       }
     });
 
-    // Special handling for radio button groups
-    const radioGroups = ['whyJoin', 'excitement', 'commitment', 'aptitudeTest', 'feeStructure'];
+    // Special handling for checkbox groups and radio button groups
+    const checkboxGroups = ['whyJoin', 'excitement'];
+    const radioGroups = ['commitment', 'aptitudeTest', 'feeStructure'];
+    
+    // Handle checkbox groups
+    checkboxGroups.forEach(groupName => {
+      const checkboxes = form.querySelectorAll(`input[name="${groupName}"]`);
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const errorElement = document.getElementById(groupName + '-error');
+          if (errorElement) {
+            errorElement.classList.add('hidden');
+          }
+          
+          // Handle "Other" option text area
+          if (checkbox.value === 'Other') {
+            const otherTextArea = document.getElementById(groupName + 'OtherText');
+            if (otherTextArea) {
+              if (checkbox.checked) {
+                otherTextArea.classList.remove('hidden');
+                otherTextArea.querySelector('textarea').focus();
+              } else {
+                otherTextArea.classList.add('hidden');
+                otherTextArea.querySelector('textarea').value = '';
+              }
+            }
+          }
+        });
+      });
+    });
+    
+    // Handle radio button groups
     radioGroups.forEach(groupName => {
       const radioButtons = form.querySelectorAll(`input[name="${groupName}"]`);
       radioButtons.forEach(radio => {
@@ -690,8 +733,39 @@ const createUrl = (path: string) => {
         }
       });
 
-      // Validate ALL radio button groups (ALL are required)
-      const radioGroups = ['whyJoin', 'excitement', 'commitment', 'aptitudeTest', 'feeStructure'];
+      // Validate checkbox groups (at least one must be selected)
+      const checkboxGroups = ['whyJoin', 'excitement'];
+      checkboxGroups.forEach(groupName => {
+        const checkedCheckboxes = form.querySelectorAll(`input[name="${groupName}"]:checked`);
+        const errorElement = document.getElementById(groupName + '-error');
+        if (checkedCheckboxes.length === 0) {
+          isFormValid = false;
+          if (errorElement) {
+            errorElement.textContent = 'This field is required - please select at least one option';
+            errorElement.classList.remove('hidden');
+          }
+        } else {
+          // Check if "Other" is selected but text area is empty
+          const otherCheckbox = form.querySelector(`input[name="${groupName}"][value="Other"]:checked`);
+          if (otherCheckbox) {
+            const otherTextArea = form.querySelector(`textarea[name="${groupName}OtherText"]`);
+            if (otherTextArea && !otherTextArea.value.trim()) {
+              isFormValid = false;
+              if (errorElement) {
+                errorElement.textContent = 'Please specify your "Other" selection';
+                errorElement.classList.remove('hidden');
+              }
+            } else if (errorElement) {
+              errorElement.classList.add('hidden');
+            }
+          } else if (errorElement) {
+            errorElement.classList.add('hidden');
+          }
+        }
+      });
+      
+      // Validate radio button groups
+      const radioGroups = ['commitment', 'aptitudeTest', 'feeStructure'];
       radioGroups.forEach(groupName => {
         const checkedRadio = form.querySelector(`input[name="${groupName}"]:checked`);
         const errorElement = document.getElementById(groupName + '-error');
@@ -869,8 +943,8 @@ const createUrl = (path: string) => {
 ━━━━━━━━━━━━━━━━━━━━━━
 • Target Job Role: ${formData.get('jobType')}
 • Expected CTC Range: ${formData.get('expectedCTC')}
-• Why Joining Program: ${formData.get('whyJoin')}
-• Most Exciting Aspect: ${formData.get('excitement')}
+• Why Joining Program: ${Array.from(formData.getAll('whyJoin')).join(', ')}${formData.get('whyJoinOtherText') ? ` (Other: ${formData.get('whyJoinOtherText')})` : ''}
+• Most Exciting Aspect: ${Array.from(formData.getAll('excitement')).join(', ')}${formData.get('excitementOtherText') ? ` (Other: ${formData.get('excitementOtherText')})` : ''}
 
 ✅ PROGRAM COMMITMENTS
 ━━━━━━━━━━━━━━━━━━━━━━━━
@@ -898,8 +972,8 @@ ${formData.get('questions') ? `
         graduation_year: formData.get('graduation'),
         target_role: formData.get('jobType'),
         expected_ctc: formData.get('expectedCTC'),
-        join_reason: formData.get('whyJoin'),
-        excitement_factor: formData.get('excitement'),
+        join_reason: Array.from(formData.getAll('whyJoin')).join(', ') + (formData.get('whyJoinOtherText') ? ` (Other: ${formData.get('whyJoinOtherText')})` : ''),
+        excitement_factor: Array.from(formData.getAll('excitement')).join(', ') + (formData.get('excitementOtherText') ? ` (Other: ${formData.get('excitementOtherText')})` : ''),
         commitment_6months: formData.get('commitment'),
         aptitude_test_ready: formData.get('aptitudeTest'),
         fee_structure_agreed: formData.get('feeStructure'),
