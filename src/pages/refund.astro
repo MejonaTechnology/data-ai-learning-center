@@ -1,93 +1,160 @@
 ---
-import PageLayout from '../components/PageLayout.astro';
+import PageLayout from "../components/PageLayout.astro";
 
 // Helper function for proper URLs
-const baseUrl = import.meta.env.BASE_URL || '/';
+const baseUrl = import.meta.env.BASE_URL || "/";
 const createUrl = (path: string) => {
-  if (path === '/') return baseUrl;
-  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  if (path === "/") return baseUrl;
+  const normalizedBase = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
   return normalizedBase + path;
 };
 ---
 
-<PageLayout 
-  title="Refund Policy" 
+<PageLayout
+  title="Refund Policy"
   description="CodeStreet's Refund Policy - Understand our refund terms and conditions for course fees and educational services."
   pageTitle="Refund Policy"
   pageSubtitle="Our clear and fair refund policy ensures transparency in all financial matters."
 >
-
   <!-- Refund Policy Content -->
   <section class="section-padding bg-white">
     <div class="content-container">
       <div class="max-w-4xl mx-auto">
         <div class="prose prose-lg max-w-none">
-          
           <div class="text-sm text-secondary-500 mb-8">
-            <strong>Last updated:</strong> August 23, 2025
+            <strong>Last updated:</strong> January 11, 2026
           </div>
 
           <div class="space-y-8">
-            
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">1. Refund Policy Overview</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                1. Refund Policy Overview
+              </h2>
               <p class="text-secondary-700 leading-relaxed">
-                At CodeStreet, we are committed to providing high-quality educational services. This Refund Policy outlines the terms and conditions under which refunds may be requested and processed for our courses and services.
+                At CodeStreet, we are committed to providing high-quality
+                educational services. This Refund Policy outlines the terms and
+                conditions under which refunds may be requested and processed
+                for our courses and services.
               </p>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">2. Eligibility for Refunds</h2>
-              
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Full Refund (100%)</h3>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                2. Eligibility for Refunds
+              </h2>
+
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                Full Refund (100%)
+              </h3>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 You are eligible for a full refund if:
               </p>
-              <ul class="list-disc list-inside space-y-2 text-secondary-700 mb-6">
-                <li>You cancel your enrollment within 7 days of payment and before the course start date</li>
-                <li>The course is cancelled by CodeStreet due to insufficient enrollment or other reasons</li>
-                <li>Technical issues prevent you from accessing the course for more than 7 consecutive days</li>
-                <li>We fail to deliver the promised course content or services</li>
+              <ul
+                class="list-disc list-inside space-y-2 text-secondary-700 mb-6"
+              >
+                <li>
+                  You cancel your enrollment within 7 days of payment and before
+                  the course start date
+                </li>
+                <li>
+                  The course is cancelled by CodeStreet due to insufficient
+                  enrollment or other reasons
+                </li>
+                <li>
+                  Technical issues prevent you from accessing the course for
+                  more than 7 consecutive days
+                </li>
+                <li>
+                  We fail to deliver the promised course content or services
+                </li>
               </ul>
 
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Partial Refund (50%)</h3>
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                Partial Refund (50%)
+              </h3>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 You may be eligible for a partial refund if:
               </p>
-              <ul class="list-disc list-inside space-y-2 text-secondary-700 mb-6">
-                <li>You withdraw from the course within the first 2 weeks after the course start date</li>
-                <li>You have attended less than 25% of the total course duration</li>
-                <li>Medical emergency or unforeseen circumstances prevent course completion (documentation required)</li>
+              <ul
+                class="list-disc list-inside space-y-2 text-secondary-700 mb-6"
+              >
+                <li>
+                  You withdraw from the course within the first 2 weeks after
+                  the course start date
+                </li>
+                <li>
+                  You have attended less than 25% of the total course duration
+                </li>
+                <li>
+                  Medical emergency or unforeseen circumstances prevent course
+                  completion (documentation required)
+                </li>
               </ul>
 
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">No Refund</h3>
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                No Refund
+              </h3>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 No refund will be provided if:
               </p>
               <ul class="list-disc list-inside space-y-2 text-secondary-700">
                 <li>You have attended more than 25% of the course duration</li>
-                <li>More than 2 weeks have passed since the course start date</li>
+                <li>
+                  More than 2 weeks have passed since the course start date
+                </li>
                 <li>You violate our Terms of Service or Code of Conduct</li>
-                <li>You fail to meet minimum attendance requirements (less than 80%)</li>
+                <li>
+                  You fail to meet minimum attendance requirements (less than
+                  80%)
+                </li>
                 <li>Course completion certificates have been issued</li>
                 <li>You switch to another course within our program</li>
               </ul>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">3. Refund Process</h2>
-              
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">How to Request a Refund</h3>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                3. Refund Process
+              </h2>
+
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                How to Request a Refund
+              </h3>
               <div class="bg-secondary-50 p-6 rounded-xl mb-6">
-                <ol class="list-decimal list-inside space-y-2 text-secondary-700">
-                  <li>Send a written refund request to <a href="mailto:info@peakserves.com" class="text-primary-600 hover:text-primary-700">info@peakserves.com</a></li>
-                  <li>Include your full name, course name, enrollment date, and reason for refund</li>
-                  <li>Provide any supporting documentation (medical certificates, etc.)</li>
-                  <li>Wait for our team to review and respond within 5-7 business days</li>
+                <ol
+                  class="list-decimal list-inside space-y-2 text-secondary-700"
+                >
+                  <li>
+                    Send a written refund request to <a
+                      href="mailto:social@codestreet.co.in"
+                      class="text-primary-600 hover:text-primary-700"
+                      >social@codestreet.co.in</a
+                    >
+                  </li>
+                  <li>
+                    Include your full name, course name, enrollment date, and
+                    reason for refund
+                  </li>
+                  <li>
+                    Provide any supporting documentation (medical certificates,
+                    etc.)
+                  </li>
+                  <li>
+                    Wait for our team to review and respond within 5-7 business
+                    days
+                  </li>
                 </ol>
               </div>
 
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Processing Time</h3>
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                Processing Time
+              </h3>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 Once your refund request is approved:
               </p>
@@ -100,46 +167,81 @@ const createUrl = (path: string) => {
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">4. Special Circumstances</h2>
-              
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Medical Emergency</h3>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                4. Special Circumstances
+              </h2>
+
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                Medical Emergency
+              </h3>
               <p class="text-secondary-700 leading-relaxed mb-4">
-                If you cannot complete the course due to a medical emergency, you may be eligible for a refund with proper medical documentation. We will review each case individually and may offer course deferment as an alternative.
+                If you cannot complete the course due to a medical emergency,
+                you may be eligible for a refund with proper medical
+                documentation. We will review each case individually and may
+                offer course deferment as an alternative.
               </p>
 
-              <h3 class="text-xl font-semibold text-secondary-900 mb-3">Course Transfer</h3>
+              <h3 class="text-xl font-semibold text-secondary-900 mb-3">
+                Course Transfer
+              </h3>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 Instead of a refund, you may transfer your enrollment to:
               </p>
               <ul class="list-disc list-inside space-y-2 text-secondary-700">
-                <li>The next batch of the same course (subject to availability)</li>
+                <li>
+                  The next batch of the same course (subject to availability)
+                </li>
                 <li>Another course of equal or lesser value</li>
                 <li>Transfer to another eligible student (with approval)</li>
               </ul>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">5. Installment Payments</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                5. Installment Payments
+              </h2>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 For courses paid in installments:
               </p>
               <ul class="list-disc list-inside space-y-2 text-secondary-700">
-                <li>Refunds will be calculated based on the amount paid to date</li>
-                <li>Future installments will be cancelled upon approved refund</li>
+                <li>
+                  Refunds will be calculated based on the amount paid to date
+                </li>
+                <li>
+                  Future installments will be cancelled upon approved refund
+                </li>
                 <li>Processing fees may be deducted from the refund amount</li>
-                <li>Any outstanding balances must be settled before refund processing</li>
+                <li>
+                  Any outstanding balances must be settled before refund
+                  processing
+                </li>
               </ul>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">6. Corporate and Bulk Enrollments</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                6. Corporate and Bulk Enrollments
+              </h2>
               <p class="text-secondary-700 leading-relaxed">
-                Corporate and bulk enrollment refunds are subject to separate terms as outlined in the specific agreement. Please contact our corporate team for detailed policies regarding bulk enrollment refunds.
+                Corporate and bulk enrollment refunds are subject to separate
+                terms as outlined in the specific agreement. Please contact our
+                corporate team for detailed policies regarding bulk enrollment
+                refunds.
               </p>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">7. Certification and Materials</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                7. Certification and Materials
+              </h2>
               <p class="text-secondary-700 leading-relaxed mb-4">
                 Upon receiving a refund, you agree to:
               </p>
@@ -152,30 +254,63 @@ const createUrl = (path: string) => {
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">8. Dispute Resolution</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                8. Dispute Resolution
+              </h2>
               <p class="text-secondary-700 leading-relaxed">
-                If you are not satisfied with our refund decision, you may escalate the matter by contacting our management team. We will review all disputes fairly and provide a final decision within 15 business days.
+                If you are not satisfied with our refund decision, you may
+                escalate the matter by contacting our management team. We will
+                review all disputes fairly and provide a final decision within
+                15 business days.
               </p>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">9. Changes to Refund Policy</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                9. Changes to Refund Policy
+              </h2>
               <p class="text-secondary-700 leading-relaxed">
-                This Refund Policy may be updated from time to time. Changes will be posted on our website and will apply to all enrollments made after the updated policy date. Existing enrollments will be governed by the policy in effect at the time of enrollment.
+                This Refund Policy may be updated from time to time. Changes
+                will be posted on our website and will apply to all enrollments
+                made after the updated policy date. Existing enrollments will be
+                governed by the policy in effect at the time of enrollment.
               </p>
             </div>
 
             <div>
-              <h2 class="text-2xl font-heading font-bold text-secondary-900 mb-4">10. Contact Information</h2>
+              <h2
+                class="text-2xl font-heading font-bold text-secondary-900 mb-4"
+              >
+                10. Contact Information
+              </h2>
               <p class="text-secondary-700 leading-relaxed mb-4">
-                For refund requests or questions about this policy, please contact us:
+                For refund requests or questions about this policy, please
+                contact us:
               </p>
               <div class="bg-secondary-50 p-6 rounded-xl">
-                <p class="text-secondary-900 font-semibold mb-2">CodeStreet Refund Team</p>
-                <p class="text-secondary-700 mb-1">Email: <a href="mailto:info@peakserves.com" class="text-primary-600 hover:text-primary-700">info@peakserves.com</a></p>
-                <p class="text-secondary-700 mb-1">Phone: <a href="tel:+919892200796" class="text-primary-600 hover:text-primary-700">+91 98922 00796</a></p>
+                <p class="text-secondary-900 font-semibold mb-2">
+                  CodeStreet Refund Team
+                </p>
+                <p class="text-secondary-700 mb-1">
+                  Email: <a
+                    href="mailto:social@codestreet.co.in"
+                    class="text-primary-600 hover:text-primary-700"
+                    >social@codestreet.co.in</a
+                  >
+                </p>
+                <p class="text-secondary-700 mb-1">
+                  Phone: <a
+                    href="tel:+919892200796"
+                    class="text-primary-600 hover:text-primary-700"
+                    >+91 98922 00796</a
+                  >
+                </p>
                 <p class="text-secondary-700 mb-3">
-                  Address: TOWER - E, CORONA OPTUS SOCIETY,<br>
+                  Address: TOWER - E, CORONA OPTUS SOCIETY,<br />
                   SECTOR 37C, GURUGRAM, HARYANA - 122001
                 </p>
                 <p class="text-secondary-600 text-sm">
@@ -184,13 +319,19 @@ const createUrl = (path: string) => {
               </div>
             </div>
 
-            <div class="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-xl">
-              <h3 class="text-lg font-semibold text-primary-900 mb-2">Important Note</h3>
+            <div
+              class="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-xl"
+            >
+              <h3 class="text-lg font-semibold text-primary-900 mb-2">
+                Important Note
+              </h3>
               <p class="text-primary-800">
-                We encourage students to carefully review course details, requirements, and our policies before enrolling. Our student success team is available to answer any questions and help you choose the right program for your goals.
+                We encourage students to carefully review course details,
+                requirements, and our policies before enrolling. Our student
+                success team is available to answer any questions and help you
+                choose the right program for your goals.
               </p>
             </div>
-
           </div>
         </div>
       </div>
@@ -198,29 +339,40 @@ const createUrl = (path: string) => {
   </section>
 
   <!-- CTA Section -->
-  <section class="gradient-hero section-padding text-white text-center relative overflow-hidden">
+  <section
+    class="gradient-hero section-padding text-white text-center relative overflow-hidden"
+  >
     <div class="absolute inset-0">
-      <div class="absolute top-10 right-10 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-20 left-20 w-48 h-48 bg-accent-500/10 rounded-full blur-2xl animate-float animation-delay-400"></div>
+      <div
+        class="absolute top-10 right-10 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-float"
+      >
+      </div>
+      <div
+        class="absolute bottom-20 left-20 w-48 h-48 bg-accent-500/10 rounded-full blur-2xl animate-float animation-delay-400"
+      >
+      </div>
     </div>
-    
+
     <div class="section-container relative z-10">
       <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">
         Questions About Our Refund Policy?
       </h2>
       <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-        Our team is here to help clarify any questions about refunds and enrollments.
+        Our team is here to help clarify any questions about refunds and
+        enrollments.
       </p>
-      
+
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href={createUrl('/contact')} class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-12 py-5 shadow-glow-lg">
+        <a
+          href={createUrl("/contact")}
+          class="btn-primary bg-white text-primary-600 hover:bg-neutral-50 text-lg px-12 py-5 shadow-glow-lg"
+        >
           Contact Support
         </a>
-        <a href={createUrl('/enroll')} class="btn-secondary text-lg px-12 py-5">
+        <a href={createUrl("/enroll")} class="btn-secondary text-lg px-12 py-5">
           Enroll Now
         </a>
       </div>
     </div>
   </section>
-
 </PageLayout>
